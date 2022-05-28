@@ -1,0 +1,73 @@
+﻿@page "/Search"
+@using WebApplication1.Model
+@inject NavigationManager NavigationManager
+
+<div class="same">
+    <div id="menu">
+        <h3 id="h3prof">GreatestFilm</h3>
+        <NavLink href="TopFilmlist" class="up"> TopFilm list</NavLink>
+        <NavLink href="profileview" class="up">Profile</NavLink>
+        <NavLink href="search" class="up">Search</NavLink>
+
+        <div id="searchbox">
+            <div> Filmname </div> <input type="text" @bind-value="filmname">
+            <div>
+                <label>Category:</label>
+            </div>
+            <div>
+                <select @onchange="@setCategory">
+                    <option></option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Romance ">Romance </option>
+                    <option value="Horror">Horror </option>
+                    <option value="Action">Action</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Crime">Crime</option>
+                    <option value="War">War</option>
+
+                </select>
+            </div>
+        </div>
+        <div>
+            <button @onclick="search"> search </button>
+            <button @onclick="clear"> clear </button>
+        </div>
+        <div>
+            <label> @message</label>
+        </div>
+    
+
+    </div>
+</div>
+@code {
+    public string filmname { set; get; }
+    public string category { set; get; }
+    public string starname { set; get; }
+    public string message { set; get; }
+    public List<Movie> result = new List<Movie>();
+
+    public async Task search()
+    {
+      //  SearchFilm film = new SearchFilm()
+     //   {
+     //       filmname = this.filmname,
+    //        category = this.category
+
+    //    };
+        //     result = movieService.searchMovies(film);
+        NavigationManager.NavigateTo("/film");
+    }
+
+    public async Task clear()
+    {
+    }
+
+
+    public void setCategory(ChangeEventArgs args)
+    {
+        string result = args.Value.ToString();
+        category = result;
+    }
+
+}

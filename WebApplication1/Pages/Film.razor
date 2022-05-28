@@ -1,0 +1,61 @@
+﻿@page "/film"
+@using WebApplication1.Model
+@inject NavigationManager NavigationManager
+
+<div id="filmInfo">
+    <h4>Result</h4>
+    <div class="fInfo">
+        <label><h3>@filmname</h3></label>
+
+    </div>
+    <div class="fInfo">
+        <label>Category</label>
+        <label>@category</label>
+    </div>
+    <div class="fInfo">
+        <label>FilmStars</label>
+        <label>@filmStar</label>
+    </div>
+    <div class="fInfo">
+        <label>Director</label>
+        <label>@director</label>
+    </div>
+    <button @onclick="addFilm">Add to my favorite! </button>
+</div>
+
+@code {
+
+    public string filmname { set; get; }
+    public string category { set; get; }
+    public string filmStar { set; get; }
+    public string director { set; get; }
+
+
+
+    public void addFilm()
+    {
+
+        NavigationManager.NavigateTo("/LogIn");
+    }
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+
+            Movie movie = new Movie(filmname,director,filmStar,category);
+
+            filmname = "Downton Abbey: A New Era";
+            director = "Simon";
+            filmStar = "Michal";
+            category = "Roamnce";
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+
+}

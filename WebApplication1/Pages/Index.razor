@@ -1,0 +1,48 @@
+﻿@page "/"
+@using WebApplication1.Model
+@inject NavigationManager NavigationManager
+
+<div id="filmSearch">
+    <div class="form-group">
+        <label>Film name:</label>
+        <input type="text" placeholder="film name" @bind-value="filmname" />
+    </div>
+
+    <button @onclick="SearchFilm">
+        Search
+    </button>
+</div>
+
+<button @onclick="LogIn">
+    LogIn
+</button>
+<button @onclick="Register">
+    Register
+</button>
+
+<div><label> @message</label></div>
+@code{
+    public string filmname;
+    public string message;
+    // public IMovieService client = new IMovieService();
+
+    public void SearchFilm()
+    {
+        //     client.Connect();
+        //     client.SearchFilm(filmname);
+        NavigationManager.NavigateTo("/Search");
+    }
+    public void LogIn()
+    {
+        //      client.Connect();
+        NavigationManager.NavigateTo("/LogIn");
+    }
+
+    public void Register()
+    {
+        //      client.Connect();
+        //      client.SearchFilm(filmname);
+        NavigationManager.NavigateTo("/Registor");
+    }
+}
+}

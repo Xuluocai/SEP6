@@ -1,0 +1,24 @@
+﻿@page "/SignUp"
+@using WebApplication1.Data
+@inject NavigationManager NavigationManager
+<div class="same">
+    <h3>The greatest film</h3>
+    <div id="SignInfo">
+        <div id="SignDone">
+            You have successfully signed up.Welcome to The greatest film!
+            <br>Go back and log in!
+            <button @onclick="back">Back</button>
+        </div>
+    </div>
+</div>
+<h3>SignUp</h3>
+
+@code {
+    // public IUserService clicent = new UserService();
+    public async Task back()
+    {
+        //    clicent.logout();
+        NavigationManager.NavigateTo("/");
+    }
+
+}

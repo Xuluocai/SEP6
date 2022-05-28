@@ -1,0 +1,51 @@
+﻿@page "/LogIn"
+@using WebApplication1.Model
+@using System.Threading
+@inject IJSRuntime JSRuntime;
+
+
+@inject NavigationManager NavigationManager
+
+<AuthorizeView>
+    <NotAuthorized>
+        <div id="header">
+            <h1>The greatest film</h1>
+        </div>
+
+        <div id="logIn">
+            <div>Username </div> <input type="text" placeholder="username" @bind-value="username" />
+            <div id="password"> Password </div> <input type="password" placeholder="password" @bind-value="password" />
+            <div id="LogButt" @onclick="PerformLogin"> Log in </div>
+            <div style="color:red">@message</div>
+            <div id="signUp">
+                <div>Aren't signed up yet?</div>
+                <NavLink class="nav-link" id="signUpLink" href="Register">Don't miss a chance and do it now!</NavLink>
+            </div>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+@code {
+    private User CurrentPerson;
+    private string message;
+    public string username { set; get; }
+    public string password { set; get; }
+
+    public async Task PerformLogin()
+    {
+        message = "";
+        try
+        {
+      //      client.Connect();
+            Thread.Sleep(100);
+       //     ((CustomAuthenticationStateProvider)AuthenticationStateProvider).ValidateLogin(username, password);
+       //     client.setcurrentName(username);
+            NavigationManager.NavigateTo("/ProfileView");
+            message = "Login succeed!";
+        }
+        catch (Exception e)
+        {
+            message = "Username or password is incorrect!";
+            Console.WriteLine(e);
+        }
+    }
+}
