@@ -24,9 +24,11 @@ namespace WebApplication1.Data
             {
                 throw new Exception("Error");
             }
+            
             string message = await response.Content.ReadAsStringAsync();
             Movie movie = JsonSerializer.Deserialize<Movie>(message);
-            Console.WriteLine(movie);
+            Console.WriteLine(movie.title);
+            Console.WriteLine(response);
             return movie;
         }
 
@@ -39,6 +41,7 @@ namespace WebApplication1.Data
             }
             string message = await response.Content.ReadAsStringAsync();
             List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
+           
             return result;
         }
 
@@ -52,6 +55,11 @@ namespace WebApplication1.Data
             }
             string message = await response.Content.ReadAsStringAsync();
             List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
+            for(int i = 0; i < result.Count; i++)
+            {
+                Console.WriteLine(result[i].title);
+            }
+            
             return result;
         }
 
@@ -64,6 +72,7 @@ namespace WebApplication1.Data
             }
             string message = await response.Content.ReadAsStringAsync();
             List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
+            Console.WriteLine(result);
             return result;
 
 

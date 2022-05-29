@@ -13,7 +13,7 @@ namespace WebApplication1.Model
             id = id;
             title = title;
         }
-        public string name { get; set; }
+       
 
         public int id { set; get; }
 
@@ -28,7 +28,7 @@ namespace WebApplication1.Model
 
         public string toString()
         {
-            return "name is " + name;
+            return "name is " + title;
         }
 
 

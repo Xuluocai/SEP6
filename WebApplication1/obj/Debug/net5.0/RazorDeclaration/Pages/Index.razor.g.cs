@@ -118,14 +118,15 @@ using WebApplication1.Data;
 
     public void SearchFilm()
     {
-        //     client.Connect();
-        //     client.SearchFilm(filmname);
-        movieService.getMovieById(1);
-    //   NavigationManager.NavigateTo("/Search");
+
+        movieService.getMoviesByYear(1970,1972);
+
+        
+
+        //   NavigationManager.NavigateTo("/Search");
     }
     public void LogIn()
     {
-        //      client.Connect();
         NavigationManager.NavigateTo("/LogIn");
     }
 
