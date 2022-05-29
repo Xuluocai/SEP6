@@ -13,78 +13,85 @@ namespace WebApplication1.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 1 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 2 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 3 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 4 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 5 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 6 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 7 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 8 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 9 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using WebApplication1;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 10 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using WebApplication1.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\Pages\Film.razor"
+#line 2 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
 using WebApplication1.Model;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
+using WebApplication1.Data;
 
 #line default
 #line hidden
@@ -98,7 +105,7 @@ using WebApplication1.Model;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 26 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\Pages\Film.razor"
+#line 28 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
        
 
     public string filmname { set; get; }
@@ -106,6 +113,7 @@ using WebApplication1.Model;
     public string filmStar { set; get; }
     public string director { set; get; }
 
+    public IList<Film> allFilms;
 
 
     public void addFilm()
@@ -116,21 +124,18 @@ using WebApplication1.Model;
 
     protected override void OnInitialized()
     {
-        try
-        {
+        Movie movie = new Movie();
+        filmname = "movie1";
+        MovieService.getMovieById(1);
 
-            Movie movie = new Movie(filmname,director,filmStar,category);
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 52 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
+                                        
 
-            filmname = "Downton Abbey: A New Era";
-            director = "Simon";
-            filmStar = "Michal";
-            category = "Roamnce";
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+
     }
 
 
@@ -138,6 +143,7 @@ using WebApplication1.Model;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMovieService MovieService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }

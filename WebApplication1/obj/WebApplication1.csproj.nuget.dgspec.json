@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\Knuse\\source\\repos\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
+    "D:\\Users\\Knuse\\source\\repos\\SEP6\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "D:\\Users\\Knuse\\source\\repos\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
+    "D:\\Users\\Knuse\\source\\repos\\SEP6\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\Knuse\\source\\repos\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "D:\\Users\\Knuse\\source\\repos\\SEP6\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "D:\\Users\\Knuse\\source\\repos\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "D:\\Users\\Knuse\\source\\repos\\SEP6\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\Knuse\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\Knuse\\source\\repos\\WebApplication1\\WebApplication1\\obj\\",
+        "outputPath": "D:\\Users\\Knuse\\source\\repos\\SEP6\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Knuse\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using WebApplication1.Model
+@using WebApplication1.Data
 @inject NavigationManager NavigationManager
 
 <div id="filmSearch">
@@ -24,13 +25,19 @@
 @code{
     public string filmname;
     public string message;
-    // public IMovieService client = new IMovieService();
+    private IMovieService movieService;
+
+    protected override void OnInitialized()
+    {
+        movieService =  new CloudMovieService();
+    }
 
     public void SearchFilm()
     {
         //     client.Connect();
         //     client.SearchFilm(filmname);
-        NavigationManager.NavigateTo("/Search");
+        movieService.getMovieById(1);
+    //   NavigationManager.NavigateTo("/Search");
     }
     public void LogIn()
     {

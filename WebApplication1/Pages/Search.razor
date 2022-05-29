@@ -1,6 +1,8 @@
 ﻿@page "/Search"
 @using WebApplication1.Model
+@using WebApplication1.Data
 @inject NavigationManager NavigationManager
+@inject CloudMovieService cloudMovieService
 
 <div class="same">
     <div id="menu">
@@ -33,10 +35,38 @@
             <button @onclick="search"> search </button>
             <button @onclick="clear"> clear </button>
         </div>
+       
+     @*   <Table Items="result">
+            <TableHeader>
+                <th>Username</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Sex</th>
+                <th>Age</th>
+                <th>Birthday</th>
+                <th>Hobbies</th>
+                <th>Major</th>
+                <th>Hometown</th>
+                <th>Description</th>
+            </TableHeader>*@
+@*            <RowTemplate>
+                <td>@context.username</td>
+                <td>@context.firstname</td>
+                <td>@context.lastname</td>
+                <td>@context.sex</td>
+                <td>@context.age</td>
+                <td>@context.birthday</td>
+                <td>@context.hobbies</td>
+                <td>@context.major</td>
+                <td>@context.hometown</td>
+                <td>@context.description</td>
+            </RowTemplate>*@
+   @*     </Table>*@
+
         <div>
             <label> @message</label>
         </div>
-    
+
 
     </div>
 </div>

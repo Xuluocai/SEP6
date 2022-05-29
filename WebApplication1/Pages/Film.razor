@@ -1,6 +1,8 @@
 ﻿@page "/film"
 @using WebApplication1.Model
+@using WebApplication1.Data
 @inject NavigationManager NavigationManager
+@inject IMovieService MovieService
 
 <div id="filmInfo">
     <h4>Result</h4>
@@ -30,6 +32,7 @@
     public string filmStar { set; get; }
     public string director { set; get; }
 
+    public IList<Film> allFilms;
 
 
     public void addFilm()
@@ -40,21 +43,15 @@
 
     protected override void OnInitialized()
     {
-        try
-        {
+        Movie movie = new Movie();
+        filmname = "movie1";
+        MovieService.getMovieById(1);
+@*        filmname = movie.moviename;
+        category = movie.category;
+        filmStar = movie.starname;
+        director = movie.directorname;*@
 
-            Movie movie = new Movie(filmname,director,filmStar,category);
 
-            filmname = "Downton Abbey: A New Era";
-            director = "Simon";
-            filmStar = "Michal";
-            category = "Roamnce";
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
     }
 
 

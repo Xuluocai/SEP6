@@ -13,77 +13,77 @@ namespace WebApplication1.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 1 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 2 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 3 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 4 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 5 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 6 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 7 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 8 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 9 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using WebApplication1;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\_Imports.razor"
+#line 10 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\_Imports.razor"
 using WebApplication1.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\Pages\FetchData.razor"
+#line 3 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\FetchData.razor"
 using WebApplication1.Data;
 
 #line default
@@ -98,7 +98,7 @@ using WebApplication1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 39 "D:\Users\Knuse\source\repos\WebApplication1\WebApplication1\Pages\FetchData.razor"
+#line 39 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\FetchData.razor"
        
     private WeatherForecast[] forecasts;
 
