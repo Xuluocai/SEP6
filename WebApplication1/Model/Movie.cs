@@ -16,7 +16,7 @@ namespace WebApplication1.Model
        
 
         public int id { set; get; }
-
+        public int year { set; get; }
         public string title { set; get; }
 
         /*        public string directorname { get; set; }

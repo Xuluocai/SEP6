@@ -7,12 +7,12 @@
 <div id="filmInfo">
     <h4>Result</h4>
     <div class="fInfo">
-        <label><h3>@filmname</h3></label>
+        <label><h3>@title</h3></label>
 
     </div>
     <div class="fInfo">
-        <label>Category</label>
-        <label>@category</label>
+        <label>Year</label>
+        <label>@year</label>
     </div>
     <div class="fInfo">
         <label>FilmStars</label>
@@ -27,10 +27,12 @@
 
 @code {
 
-    public string filmname { set; get; }
-    public string category { set; get; }
+    private IMovieService movieService;
+    public string title { set; get; }
+    public int year { set; get; }
     public string filmStar { set; get; }
     public string director { set; get; }
+
 
     public IList<Film> allFilms;
 
@@ -41,16 +43,27 @@
         NavigationManager.NavigateTo("/LogIn");
     }
 
-    protected override void OnInitialized()
+    protected  override void OnInitialized()
     {
-        Movie movie = new Movie();
-        filmname = "movie1";
-        MovieService.getMovieById(1);
-@*        filmname = movie.moviename;
-        category = movie.category;
-        filmStar = movie.starname;
-        director = movie.directorname;*@
 
+        try
+        {
+            movieService = new CloudMovieService();
+            //Movie movie = await movieService.getMovieById(1);
+
+
+            Movie movie =  movieService.getMovieById(1).Result;
+            title = movie.title;
+            //    Console.WriteLine(movieService.getMovieById(1).Result.title);
+
+
+
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
 
     }
 

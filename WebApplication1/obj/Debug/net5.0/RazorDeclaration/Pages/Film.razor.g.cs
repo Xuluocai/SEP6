@@ -108,10 +108,12 @@ using WebApplication1.Data;
 #line 28 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
        
 
-    public string filmname { set; get; }
-    public string category { set; get; }
+    private IMovieService movieService;
+    public string title { set; get; }
+    public int year { set; get; }
     public string filmStar { set; get; }
     public string director { set; get; }
+
 
     public IList<Film> allFilms;
 
@@ -122,19 +124,27 @@ using WebApplication1.Data;
         NavigationManager.NavigateTo("/LogIn");
     }
 
-    protected override void OnInitialized()
+    protected  override void OnInitialized()
     {
-        Movie movie = new Movie();
-        filmname = "movie1";
-        MovieService.getMovieById(1);
 
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 52 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
-                                        
+        try
+        {
+            movieService = new CloudMovieService();
+            //Movie movie = await movieService.getMovieById(1);
 
+
+            Movie movie =  movieService.getMovieById(1).Result;
+            title = movie.title;
+            //    Console.WriteLine(movieService.getMovieById(1).Result.title);
+
+
+
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
 
     }
 

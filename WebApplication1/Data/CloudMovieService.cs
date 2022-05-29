@@ -20,6 +20,7 @@ namespace WebApplication1.Data
         public async Task<Movie> getMovieById(int Id)
         {
             HttpResponseMessage response = await client.GetAsync($"{url}/movie/getMovieById?id={Id}");
+        
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("Error");
@@ -30,19 +31,6 @@ namespace WebApplication1.Data
             Console.WriteLine(movie.title);
             Console.WriteLine(response);
             return movie;
-        }
-
-        public async Task<IList<Movie>> GetMovies()
-        {
-            HttpResponseMessage response = await client.GetAsync(url + "/movie/getAllMovies");
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception("Error");
-            }
-            string message = await response.Content.ReadAsStringAsync();
-            List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
-           
-            return result;
         }
 
       
@@ -76,6 +64,30 @@ namespace WebApplication1.Data
             return result;
 
 
+        }
+
+        public async Task<IList<People>> getStasById(int id)
+        {
+            HttpResponseMessage response = await client.GetAsync($"{url}/movie/getStarsByMovie?id={id}");
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error");
+            }
+            string message = await response.Content.ReadAsStringAsync();
+            List<People> result = JsonSerializer.Deserialize<List<People>>(message);
+            return result;
+        }
+
+        public async Task<IList<People>> getDirectorsById(int id)
+        {
+            HttpResponseMessage response = await client.GetAsync($"{url}/movie/getDirectorssByMovie?id={id}");
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error");
+            }
+            string message = await response.Content.ReadAsStringAsync();
+            List<People> results = JsonSerializer.Deserialize<List<People>>(message);
+            return results;
         }
     }
 }

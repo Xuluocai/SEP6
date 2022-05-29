@@ -127,7 +127,7 @@ using WebApplication1.Data;
     }
     public void LogIn()
     {
-        NavigationManager.NavigateTo("/LogIn");
+        NavigationManager.NavigateTo("/film");
     }
 
     public void Register()
