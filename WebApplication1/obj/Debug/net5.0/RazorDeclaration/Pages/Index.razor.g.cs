@@ -113,27 +113,23 @@ using WebApplication1.Data;
 
     protected override void OnInitialized()
     {
-        movieService =  new CloudMovieService();
+        movieService = new CloudMovieService();
     }
 
     public void SearchFilm()
     {
-
-        movieService.getStasById(15724);
-
-        
-
-     //    NavigationManager.NavigateTo("/Search");
+        filmname = "Please log in !";
     }
     public void LogIn()
     {
-        
-     NavigationManager.NavigateTo("/film");
+        movieService.getMoviesByTitle("face");
+        Console.WriteLine(123);
+    //    NavigationManager.NavigateTo("/search");
     }
 
     public void Register()
     {
-       
+
         NavigationManager.NavigateTo("/Registor");
     }
 

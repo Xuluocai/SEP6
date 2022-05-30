@@ -105,35 +105,66 @@ using WebApplication1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 50 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Search.razor"
+#line 72 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Search.razor"
        
     private IMovieService movieService;
-    public string title { set; get; }
+    private int pageNumber = 1;
+    private int pageSize = 20;
+    private string text ="new";
     public string filmname { set; get; }
-    public string category { set; get; }
-    public string starname { set; get; }
     public string message { set; get; }
     public IList<Movie> result = new List<Movie>();
-    public IList<People> result1 = new List<People>();
+    public IList<Movie> result1 = new List<Movie>();
+
 
     public async Task search()
     {
-        try {
+        try
+        {
+
+
             movieService = new CloudMovieService();
-            result= await movieService.getMoviesByTitle(title);
+
+
+            IList<Movie> movies = await movieService.getMoviesByTitle(filmname);
+            result1 = movies;
+            HandleChangePage(result1.Count / pageSize);
+            Console.WriteLine("The title is" + text);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
         }
+
+
     }
 
 
     public async Task clear()
     {
-    }
+        result.Clear();
 
+    }
+    public void GetDetails()
+    {
+
+     //   int Id = movieService.getMoviesByTitle(text).Id;
+     //   Console.WriteLine("The title is"+text);
+        Film film = new Film(15724);
+      //  Console.WriteLine(54321);
+        NavigationManager.NavigateTo("/film");
+    }
+    void HandleChangePage(int p)
+    {
+        pageNumber = p;
+
+        result = new List<Movie>(result1.Skip((p - 1) * pageSize).Take(pageSize));
+        Console.WriteLine("p is "+p);
+        foreach (var item in result) {
+            Console.WriteLine(item.title);
+        }
+    }
 
 
 #line default

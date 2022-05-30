@@ -58,13 +58,14 @@
     private IMovieService movieService;
     public string title { set; get; }
     public int year { set; get; }
+    public int Id { set; get; }
     public IList<People> filmStars { set; get; } = new List<People>();
     public IList<People> directors { set; get; } = new List<People>();
     public IList<Movie> movies { set; get; } = new List<Movie>();
 
     public IList<Film> allFilms;
 
-
+    public Film(int Id) { this.Id = Id; }
     public async void addFilm()
     {
         Console.WriteLine("111111111111111111111111111111");
@@ -94,12 +95,12 @@
         {
 
             movieService = new CloudMovieService();
-            Movie movie = await movieService.getMovieById(15724);
+            Movie movie = await movieService.getMovieById(Id);
             title = movie.title;
             year = movie.year;
-            directors = await movieService.getDirectorsById(15724);
+            directors = await movieService.getDirectorsById(Id);
             Console.WriteLine("the director is" + directors[0].name);
-            filmStars = await movieService.getStasById(15724);
+            filmStars = await movieService.getStasById(Id);
 
             movies = await movieService.getMoviesByTitle(title);
             Console.WriteLine("this is" + movies[0].title);
