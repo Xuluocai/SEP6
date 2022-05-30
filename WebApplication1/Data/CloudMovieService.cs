@@ -51,43 +51,65 @@ namespace WebApplication1.Data
             return result;
         }
 
+
         public async Task<IList<Movie>> getMoviesByTitle(string title)
         {
-           HttpResponseMessage response=await client.GetAsync($"{url}/movie/getMovieByTitle?title={title}");
+            Console.WriteLine("this is start from task" );
+            HttpResponseMessage response=await client.GetAsync($"{url}/movie/getMoviesByTitle?title={title}");
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Error");
+                throw new Exception("Error"+response);
             }
             string message = await response.Content.ReadAsStringAsync();
             List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
-            Console.WriteLine(result);
+            Console.WriteLine("this is"+result);
             return result;
-
 
         }
 
+        public IList<Movie> test(string title)
+        {
+            Console.WriteLine("this is start" );
+            IList<Movie> result = new List<Movie>();
+            result =  this.getMoviesByTitle(title).Result;
+            Console.WriteLine("this is" + result);
+            return result;
+
+        }
+
+
+
+
+
+
         public async Task<IList<People>> getStasById(int id)
         {
-            HttpResponseMessage response = await client.GetAsync($"{url}/movie/getStarsByMovie?id={id}");
+            HttpResponseMessage response = await client.GetAsync($"{url}/people/getStarsByMovie?id={id}");
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("Error");
             }
             string message = await response.Content.ReadAsStringAsync();
             List<People> result = JsonSerializer.Deserialize<List<People>>(message);
+            for (int i = 0; i < result.Count; i++)
+            {
+                Console.WriteLine(result[i].name);
+            }
             return result;
         }
 
         public async Task<IList<People>> getDirectorsById(int id)
         {
-            HttpResponseMessage response = await client.GetAsync($"{url}/movie/getDirectorssByMovie?id={id}");
+            HttpResponseMessage response = await client.GetAsync($"{url}/people/getDirectorsByMovie?id={id}");
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("Error");
             }
             string message = await response.Content.ReadAsStringAsync();
-            List<People> results = JsonSerializer.Deserialize<List<People>>(message);
-            return results;
+           List<People> result = JsonSerializer.Deserialize<List<People>>(message);
+            for (int i = 0; i < result.Count; i++) {
+                Console.WriteLine(result[i].name); }
+            return result;
         }
     }
 }

@@ -8,5 +8,12 @@ namespace WebApplication1.Model
     public class People
     {
         public String name { get; set; }
+        public int birth { get; set; }
+
+        public People(string name  )
+        {
+            this.name = name;
+            this.birth = birth;
+        }
     }
 }

@@ -105,42 +105,40 @@ using WebApplication1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 73 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Search.razor"
+#line 50 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Search.razor"
        
+    private IMovieService movieService;
+    public string title { set; get; }
     public string filmname { set; get; }
     public string category { set; get; }
     public string starname { set; get; }
     public string message { set; get; }
-    public List<Movie> result = new List<Movie>();
+    public IList<Movie> result = new List<Movie>();
+    public IList<People> result1 = new List<People>();
 
     public async Task search()
     {
-      //  SearchFilm film = new SearchFilm()
-     //   {
-     //       filmname = this.filmname,
-    //        category = this.category
-
-    //    };
-        //     result = movieService.searchMovies(film);
-        NavigationManager.NavigateTo("/film");
+        try {
+            movieService = new CloudMovieService();
+            result= await movieService.getMoviesByTitle(title);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
+
 
     public async Task clear()
     {
     }
 
 
-    public void setCategory(ChangeEventArgs args)
-    {
-        string result = args.Value.ToString();
-        category = result;
-    }
-
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private CloudMovieService cloudMovieService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }

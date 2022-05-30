@@ -2,7 +2,7 @@
 @using WebApplication1.Model
 @using WebApplication1.Data
 @inject NavigationManager NavigationManager
-@inject CloudMovieService cloudMovieService
+
 
 <div class="same">
     <div id="menu">
@@ -10,94 +10,70 @@
         <NavLink href="TopFilmlist" class="up"> TopFilm list</NavLink>
         <NavLink href="profileview" class="up">Profile</NavLink>
         <NavLink href="search" class="up">Search</NavLink>
-
-        <div id="searchbox">
-            <div> Filmname </div> <input type="text" @bind-value="filmname">
-            <div>
-                <label>Category:</label>
+        <div id="filmSearch">
+            <div class="form-group">
+                <label>Film name:</label>
+                <input type="text" placeholder="film name" @bind-value="filmname" />
             </div>
-            <div>
-                <select @onchange="@setCategory">
-                    <option></option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Romance ">Romance </option>
-                    <option value="Horror">Horror </option>
-                    <option value="Action">Action</option>
-                    <option value="Sci-Fi">Sci-Fi</option>
-                    <option value="Crime">Crime</option>
-                    <option value="War">War</option>
-
-                </select>
             </div>
-        </div>
-        <div>
-            <button @onclick="search"> search </button>
-            <button @onclick="clear"> clear </button>
-        </div>
-       
-     @*   <Table Items="result">
-            <TableHeader>
-                <th>Username</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Sex</th>
-                <th>Age</th>
-                <th>Birthday</th>
-                <th>Hobbies</th>
-                <th>Major</th>
-                <th>Hometown</th>
-                <th>Description</th>
-            </TableHeader>*@
-@*            <RowTemplate>
-                <td>@context.username</td>
-                <td>@context.firstname</td>
-                <td>@context.lastname</td>
-                <td>@context.sex</td>
-                <td>@context.age</td>
-                <td>@context.birthday</td>
-                <td>@context.hobbies</td>
-                <td>@context.major</td>
-                <td>@context.hometown</td>
-                <td>@context.description</td>
-            </RowTemplate>*@
-   @*     </Table>*@
 
-        <div>
-            <label> @message</label>
-        </div>
+            <div>
+                <button @onclick="search"> search </button>
+                <button @onclick="clear"> clear </button>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Movies:</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in result)
+                    {
+                        <tr>
+                            <td>@item.title</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+            <div>
+                <label> @message</label>
+            </div>
 
 
+        </div>
     </div>
-</div>
 @code {
+    private IMovieService movieService;
+    public string title { set; get; }
     public string filmname { set; get; }
     public string category { set; get; }
     public string starname { set; get; }
     public string message { set; get; }
-    public List<Movie> result = new List<Movie>();
+    public IList<Movie> result = new List<Movie>();
+    public IList<People> result1 = new List<People>();
 
     public async Task search()
     {
-      //  SearchFilm film = new SearchFilm()
-     //   {
-     //       filmname = this.filmname,
-    //        category = this.category
-
-    //    };
-        //     result = movieService.searchMovies(film);
-        NavigationManager.NavigateTo("/film");
+        try {
+            movieService = new CloudMovieService();
+            result= await movieService.getMoviesByTitle(title);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
+
 
     public async Task clear()
     {
     }
 
-
-    public void setCategory(ChangeEventArgs args)
-    {
-        string result = args.Value.ToString();
-        category = result;
-    }
 
 }

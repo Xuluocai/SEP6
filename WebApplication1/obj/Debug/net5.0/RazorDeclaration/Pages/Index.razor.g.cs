@@ -119,21 +119,21 @@ using WebApplication1.Data;
     public void SearchFilm()
     {
 
-        movieService.getMoviesByYear(1970,1972);
+        movieService.getStasById(15724);
 
         
 
-        //   NavigationManager.NavigateTo("/Search");
+     //    NavigationManager.NavigateTo("/Search");
     }
     public void LogIn()
     {
-        NavigationManager.NavigateTo("/film");
+        
+     NavigationManager.NavigateTo("/film");
     }
 
     public void Register()
     {
-        //      client.Connect();
-        //      client.SearchFilm(filmname);
+       
         NavigationManager.NavigateTo("/Registor");
     }
 

@@ -105,40 +105,57 @@ using WebApplication1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
+#line 56 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
        
 
     private IMovieService movieService;
     public string title { set; get; }
     public int year { set; get; }
-    public string filmStar { set; get; }
-    public string director { set; get; }
-
+    public IList<People> filmStars { set; get; } = new List<People>();
+    public IList<People> directors { set; get; } = new List<People>();
+    public IList<Movie> movies { set; get; } = new List<Movie>();
 
     public IList<Film> allFilms;
 
 
-    public void addFilm()
+    public async void addFilm()
     {
+        Console.WriteLine("111111111111111111111111111111");
+        Movie movie = await movieService.getMovieById(16906);
+        Console.WriteLine("now the title is -----"+title);
+        title = movie.title;
+        Console.WriteLine("now the title is -----" + title);
+        year = movie.year;
+        directors = await movieService.getDirectorsById(16906);
+        filmStars = await movieService.getStasById(16906);
+        Console.WriteLine("add film add film  add film  add film  add film  add film  add film");
+        //    NavigationManager.NavigateTo("/LogIn");
+        IList<Movie> list = new List<Movie>();
+        list = await movieService.getMoviesByTitle("Faceless");
+        for (int i =0;i<list.Count;i++)
+        {
+            Console.WriteLine(list[i].title);
+        }
 
-        NavigationManager.NavigateTo("/LogIn");
+        Console.WriteLine("now the title is -----" + title);
     }
 
-    protected  override void OnInitialized()
+    protected  override  async Task OnInitializedAsync()
     {
 
         try
         {
+
             movieService = new CloudMovieService();
-            //Movie movie = await movieService.getMovieById(1);
-
-
-            Movie movie =  movieService.getMovieById(1).Result;
+            Movie movie = await movieService.getMovieById(15724);
             title = movie.title;
-            //    Console.WriteLine(movieService.getMovieById(1).Result.title);
+            year = movie.year;
+            directors = await movieService.getDirectorsById(15724);
+            Console.WriteLine("the director is" + directors[0].name);
+            filmStars = await movieService.getStasById(15724);
 
-
-
+            movies = await movieService.getMoviesByTitle(title);
+            Console.WriteLine("this is" + movies[0].title);
         }
         catch(Exception e)
         {
@@ -147,6 +164,7 @@ using WebApplication1.Data;
         }
 
     }
+
 
 
 

@@ -107,8 +107,7 @@ using WebApplication1.Model;
 
     public void RegisterNewUser()
     {
-        //     clicent.Connect();
-        //      clicent.RegisterUser(username, password);
+        
         message = "Register succedds!";
         NavigationManager.NavigateTo("/SignUp");
 
