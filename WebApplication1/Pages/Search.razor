@@ -34,10 +34,10 @@
                 @foreach (var item in result)
                 {
 
-                <tr>
+                <tr @onclick="e => GetDetails(item)">
 
-                    <td><a @onclick="GetDetails" >@item.title</a></td>
-                    <input value="@item.title"/>
+                    <td>@item.title</td>
+                    
                     <td>@item.year</td>
                     
                 </tr>
@@ -109,14 +109,12 @@
         result.Clear();
 
     }
-    public void GetDetails()
-    {
 
-     //   int Id = movieService.getMoviesByTitle(text).Id;
-     //   Console.WriteLine("The title is"+text);
-        Film film = new Film(15724);
-      //  Console.WriteLine(54321);
-        NavigationManager.NavigateTo("/film");
+    public void GetDetails(Movie item)
+    {
+        int id = item.id;
+        Console.WriteLine(id);
+        NavigationManager.NavigateTo($"film/{id}");
     }
     void HandleChangePage(int p)
     {

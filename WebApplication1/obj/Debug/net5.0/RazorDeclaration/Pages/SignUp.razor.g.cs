@@ -100,7 +100,7 @@ using WebApplication1.Data;
 #nullable restore
 #line 16 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\SignUp.razor"
        
-    // public IUserService clicent = new UserService();
+   
     public async Task back()
     {
         //    clicent.logout();

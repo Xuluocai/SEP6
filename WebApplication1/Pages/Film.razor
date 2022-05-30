@@ -1,4 +1,4 @@
-﻿@page "/film"
+﻿@page "/film/{id}"
 @using WebApplication1.Model
 @using WebApplication1.Data
 @inject NavigationManager NavigationManager
@@ -24,7 +24,7 @@
         <tbody>
             @foreach (var item in filmStars)
             {
-                <tr>
+                <tr >
                     <td>@item.name</td>
                     <td>@item.birth</td>
                 </tr>
@@ -58,48 +58,42 @@
     private IMovieService movieService;
     public string title { set; get; }
     public int year { set; get; }
+
+    [Parameter]
+    public string id { get; set; }
+
     public int Id { set; get; }
+
+
     public IList<People> filmStars { set; get; } = new List<People>();
     public IList<People> directors { set; get; } = new List<People>();
     public IList<Movie> movies { set; get; } = new List<Movie>();
 
     public IList<Film> allFilms;
-
-    public Film(int Id) { this.Id = Id; }
     public async void addFilm()
     {
-        Console.WriteLine("111111111111111111111111111111");
-        Movie movie = await movieService.getMovieById(16906);
-        Console.WriteLine("now the title is -----"+title);
-        title = movie.title;
-        Console.WriteLine("now the title is -----" + title);
-        year = movie.year;
-        directors = await movieService.getDirectorsById(16906);
-        filmStars = await movieService.getStasById(16906);
-        Console.WriteLine("add film add film  add film  add film  add film  add film  add film");
-        //    NavigationManager.NavigateTo("/LogIn");
-        IList<Movie> list = new List<Movie>();
-        list = await movieService.getMoviesByTitle("Faceless");
-        for (int i =0;i<list.Count;i++)
-        {
-            Console.WriteLine(list[i].title);
-        }
 
-        Console.WriteLine("now the title is -----" + title);
+
+        NavigationManager.NavigateTo("/TopFilmlist");
     }
 
     protected  override  async Task OnInitializedAsync()
     {
+        Id = int.Parse(id);
+
 
         try
         {
-
+            Console.WriteLine(int.MaxValue);
+            Console.WriteLine(Id);
             movieService = new CloudMovieService();
             Movie movie = await movieService.getMovieById(Id);
             title = movie.title;
+            Console.WriteLine("title is "+title);
             year = movie.year;
+            Console.WriteLine("year is "+ year);
             directors = await movieService.getDirectorsById(Id);
-            Console.WriteLine("the director is" + directors[0].name);
+         
             filmStars = await movieService.getStasById(Id);
 
             movies = await movieService.getMoviesByTitle(title);

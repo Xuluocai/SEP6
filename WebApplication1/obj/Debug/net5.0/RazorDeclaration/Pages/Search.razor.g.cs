@@ -146,14 +146,12 @@ using WebApplication1.Data;
         result.Clear();
 
     }
-    public void GetDetails()
-    {
 
-     //   int Id = movieService.getMoviesByTitle(text).Id;
-     //   Console.WriteLine("The title is"+text);
-        Film film = new Film(15724);
-      //  Console.WriteLine(54321);
-        NavigationManager.NavigateTo("/film");
+    public void GetDetails(Movie item)
+    {
+        int id = item.id;
+        Console.WriteLine(id);
+        NavigationManager.NavigateTo($"film/{id}");
     }
     void HandleChangePage(int p)
     {

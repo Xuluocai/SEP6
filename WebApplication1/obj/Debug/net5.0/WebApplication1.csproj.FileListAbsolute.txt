@@ -132,3 +132,5 @@ D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\ref\WebApplica
 D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\WebApplication1.pdb
 D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\WebApplication1.genruntimeconfig.cache
 D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\WebApplication1.csproj.CopyComplete
+D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\RazorDeclaration\Pages\TopFilm.razor.g.cs
+D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\Razor\Pages\TopFilm.razor.g.cs
