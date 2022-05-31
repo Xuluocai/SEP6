@@ -155,5 +155,37 @@ namespace WebApplication1.Data
             Console.WriteLine(response);
             return people;
         }
+
+        public async Task<double> getRatingById(int id)
+        {
+            HttpResponseMessage response = await client.GetAsync($"{url}/movie/getRatingById?id={id}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            Double rating = JsonSerializer.Deserialize<Double>(message);
+            Console.WriteLine(rating);
+            Console.WriteLine(response);
+            return rating;
+        }
+
+        public async Task<double> getVotesById(int id)
+        {
+            HttpResponseMessage response = await client.GetAsync($"{url}/movie/getVotesById?id={id}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            Double votes= JsonSerializer.Deserialize<Double>(message);
+            Console.WriteLine(votes);
+            Console.WriteLine(response);
+            return votes;
+        }
     }
 }

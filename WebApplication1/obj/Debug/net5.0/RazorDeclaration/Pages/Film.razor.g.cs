@@ -105,12 +105,14 @@ using WebApplication1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 61 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
+#line 70 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
        
 
     private IMovieService movieService;
     public string title { set; get; }
     public int year { set; get; }
+    public double rating { set; get; } = new double();
+    public double votes { set; get; } = new double();
 
     [Parameter]
     public string id { get; set; }
@@ -143,6 +145,8 @@ using WebApplication1.Data;
             Movie movie = await movieService.getMovieById(Id);
             title = movie.title;
             Console.WriteLine("title is "+title);
+            rating = await movieService.getRatingById(Id);
+            votes = await movieService.getVotesById(Id);
             year = movie.year;
             Console.WriteLine("year is "+ year);
             directors = await movieService.getDirectorsById(Id);
@@ -159,7 +163,7 @@ using WebApplication1.Data;
         }
 
     }
-   
+
 
 
 #line default

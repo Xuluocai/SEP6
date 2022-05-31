@@ -19,6 +19,8 @@ namespace WebApplication1.Model
         public int id { set; get; }
         public int year { set; get; }
         public string title { set; get; }
+        public double rating { set; get; }
+        public double votes { set; get; }
         public List<People> director { set; get; }
         public List<People> stars { set; get; }
 

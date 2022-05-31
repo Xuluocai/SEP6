@@ -7,12 +7,21 @@
 <div id="filmInfo">
     <h4>Result</h4>
     <div class="fInfo">
-        <h3 >@title</h3>
+        <h3>@title</h3>
 
     </div>
     <div class="fInfo">
         <label>Year</label>
         <label>@year</label>
+    </div>
+
+    <div class="fInfo">
+        <label>Rating</label>
+        <label>@rating</label>
+    </div>
+    <div class="fInfo">
+        <label>Votes</label>
+        <label>@votes</label>
     </div>
     <table class="table">
         <thead>
@@ -24,34 +33,34 @@
         <tbody>
             @foreach (var item in filmStars)
             {
-            <tr>
-                <a href="StarDetail/@item.id">
-                <td>@item.name</td>
-                </a>
-                <td>@item.birth</td>
-            </tr>
+                <tr>
+                    <a href="StarDetail/@item.id">
+                    <td>@item.name</td>
+                    </a>
+                    <td>@item.birth</td>
+                </tr>
             }
         </tbody>
 
     </table>
     <table class="table">
         <thead>
-        <tr>
-            <th>Directors:</th>
-            <th>Birth:</th>
-  </tr>
+            <tr>
+                <th>Directors:</th>
+                <th>Birth:</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var item in directors)
-        {
-            <tr>
-                <a href="DirectorDetail/@item.id">
-                <td>@item.name</td>
-                </a>
-                <td>@item.birth</td>
-                
-            </tr>
-        }
+            @foreach (var item in directors)
+            {
+                <tr>
+                    <a href="DirectorDetail/@item.id">
+                    <td>@item.name</td>
+                    </a>
+                    <td>@item.birth</td>
+
+                </tr>
+            }
         </tbody>
 
     </table>
@@ -63,6 +72,8 @@
     private IMovieService movieService;
     public string title { set; get; }
     public int year { set; get; }
+    public double rating { set; get; } = new double();
+    public double votes { set; get; } = new double();
 
     [Parameter]
     public string id { get; set; }
@@ -95,6 +106,8 @@
             Movie movie = await movieService.getMovieById(Id);
             title = movie.title;
             Console.WriteLine("title is "+title);
+            rating = await movieService.getRatingById(Id);
+            votes = await movieService.getVotesById(Id);
             year = movie.year;
             Console.WriteLine("year is "+ year);
             directors = await movieService.getDirectorsById(Id);
@@ -111,6 +124,6 @@
         }
 
     }
-   
+
 
 }
