@@ -134,3 +134,7 @@ D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\WebApplication
 D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\WebApplication1.csproj.CopyComplete
 D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\RazorDeclaration\Pages\TopFilm.razor.g.cs
 D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\Razor\Pages\TopFilm.razor.g.cs
+D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\RazorDeclaration\Pages\DirectorDetail.razor.g.cs
+D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\RazorDeclaration\Pages\StarDetail.razor.g.cs
+D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\Razor\Pages\DirectorDetail.razor.g.cs
+D:\Users\Knuse\source\repos\SEP6\WebApplication1\obj\Debug\net5.0\Razor\Pages\StarDetail.razor.g.cs

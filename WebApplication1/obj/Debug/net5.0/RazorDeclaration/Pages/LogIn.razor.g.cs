@@ -96,6 +96,13 @@ using System.Threading;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\LogIn.razor"
+using WebApplication1.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/LogIn")]
     public partial class LogIn : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -107,22 +114,32 @@ using System.Threading;
 #nullable restore
 #line 27 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\LogIn.razor"
        
-    private User CurrentPerson;
+    private IUserService userService;
     private string message;
     public string username { set; get; }
     public string password { set; get; }
+
+    protected override void OnInitialized()
+    {
+        userService = new UserService();
+    }
+
 
     public async Task PerformLogin()
     {
         message = "";
         try
         {
-      //      client.Connect();
-            Thread.Sleep(100);
-       //     ((CustomAuthenticationStateProvider)AuthenticationStateProvider).ValidateLogin(username, password);
-       //     client.setcurrentName(username);
-            NavigationManager.NavigateTo("/ProfileView");
-            message = "Login succeed!";
+            User user = await userService.getUserByUsername(username);
+
+            if (password.Equals(user.password)){
+                NavigationManager.NavigateTo("/search");
+                message = "Login succeed!";
+            }
+            else
+            {
+                message = "Please check your username and password and try again!";
+            }
         }
         catch (Exception e)
         {

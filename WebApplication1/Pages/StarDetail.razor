@@ -1,0 +1,71 @@
+﻿@page "/StarDetail/{id}"
+@using WebApplication1.Data
+@using WebApplication1.Model
+
+<div id="filmInfo">
+    <h4>Result</h4>
+    <div class="fInfo">
+        <h3>@name</h3>
+
+    </div>
+    <div class="fInfo">
+        <label>Birth</label>
+        <label>@birth</label>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Movies:</th>
+                <th>Year:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in movies)
+            {
+                <tr>
+                    <td>@item.title</td>
+                    <td>@item.year</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+@code {
+    public string name { set; get; }
+    public int birth { set; get; }
+
+    [Parameter]
+    public string id { get; set; }
+    public int Id { set; get; }
+    public IList<Movie> movies { set; get; } = new List<Movie>();
+
+    private IMovieService movieService;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Id = int.Parse(id);
+
+
+        try
+        {
+
+            Console.WriteLine(Id);
+            movieService = new CloudMovieService();
+            //  Movie movie = await movieService.getMoviesByDirector(Id);
+            //    title = movie.title;
+            //   Console.WriteLine("title is " + title);
+            //     year = movie.year;
+            // Console.WriteLine("year is " + year);
+            movies = await movieService.getMoviesByStar(Id);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+
+    }
+}
+

@@ -83,7 +83,21 @@ using WebApplication1.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 2 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Registor.razor"
+using WebApplication1.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Registor.razor"
+using WebApplication1.Model;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Registor.razor"
 using WebApplication1.Model;
 
 #line default
@@ -98,17 +112,21 @@ using WebApplication1.Model;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 18 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Registor.razor"
+#line 20 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Registor.razor"
        
     public string username;
     public string password;
     public string message;
+    private IUserService userService;
 
-
-    public void RegisterNewUser()
+    protected override void OnInitialized()
+    {
+        userService = new UserService();
+    }
+    public async Task RegisterNewUser()
     {
         
-        message = "Register succedds!";
+
         NavigationManager.NavigateTo("/SignUp");
 
     }

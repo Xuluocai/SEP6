@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace WebApplication1.Pages
+namespace WebApplication1.Data
 {
     #line hidden
     using System;
@@ -82,37 +82,13 @@ using WebApplication1.Shared;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 2 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
-using WebApplication1.Data;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
-using WebApplication1.Model;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/TopFilmlist")]
-    public partial class TopFilm : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class UserService : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 8 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
-       
-    private IUserService useService;
-    private IMovieService movieService;
-
-#line default
-#line hidden
-#nullable disable
     }
 }
 #pragma warning restore 1591

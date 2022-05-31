@@ -24,7 +24,7 @@
         <tbody>
             @foreach (var item in filmStars)
             {
-                <tr >
+                <tr  @onclick="e => GetStarDetails(item)">
                     <td>@item.name</td>
                     <td>@item.birth</td>
                 </tr>
@@ -42,7 +42,8 @@
         <tbody>
         @foreach (var item in directors)
         {
-            <tr>
+            <tr @onclick="e => GetDirectorDetails(item)">
+
                 <td>@item.name</td>
                 <td>@item.birth</td>
             </tr>
@@ -93,7 +94,7 @@
             year = movie.year;
             Console.WriteLine("year is "+ year);
             directors = await movieService.getDirectorsById(Id);
-         
+
             filmStars = await movieService.getStasById(Id);
 
             movies = await movieService.getMoviesByTitle(title);
@@ -106,7 +107,18 @@
         }
 
     }
+    public void GetDirectorDetails(People item)
+    {
+        int id = item.id;
+        Console.WriteLine(id);
+        NavigationManager.NavigateTo($"DirectorDetail/{id}");
+    }
 
-
+    public void GetStarDetails(People item)
+    {
+        int id = item.id;
+        Console.WriteLine(id);
+        NavigationManager.NavigateTo($"StarDetail/{id}");
+    }
 
 }

@@ -83,21 +83,21 @@ using WebApplication1.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
+#line 2 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\DirectorDetail.razor"
 using WebApplication1.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
+#line 3 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\DirectorDetail.razor"
 using WebApplication1.Model;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/TopFilmlist")]
-    public partial class TopFilm : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/DirectorDetail/{id}")]
+    public partial class DirectorDetail : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,10 +105,44 @@ using WebApplication1.Model;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 8 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
-       
-    private IUserService useService;
-    private IMovieService movieService;
+#line 34 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\DirectorDetail.razor"
+           
+        public string name { set; get; }
+        public int birth { set; get; }
+
+        [Parameter]
+        public string id { get; set; }
+        public int Id { set; get; }
+        public IList<Movie> movies { set; get; } = new List<Movie>();
+
+        private IMovieService movieService;
+
+        protected override async Task OnInitializedAsync()
+        {
+            Id = int.Parse(id);
+
+
+            try
+            {
+               
+                Console.WriteLine(Id);
+                movieService = new CloudMovieService();
+             //  Movie movie = await movieService.getMoviesByDirector(Id);
+            //    title = movie.title;
+             //   Console.WriteLine("title is " + title);
+           //     year = movie.year;
+               // Console.WriteLine("year is " + year);
+                movies = await movieService.getMoviesByDirector(Id);
+  
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+        }
+    
 
 #line default
 #line hidden

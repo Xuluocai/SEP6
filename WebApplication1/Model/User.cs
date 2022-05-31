@@ -12,17 +12,12 @@ namespace WebApplication1.Model
 
         }
 
-        public User(String username, String password, String lastname, String firstname, String sex, int age) { }
+        public User(String username, String password,int age) { }
 
         public string username { get; set; }
 
         public string password { get; set; }
 
-        public string birthday { get; set; }
-
-        public string lastname { set; get; }
-        public string firstname { get; set; }
-        public string sex { get; set; }
         public int age { get; set; }
 
     }

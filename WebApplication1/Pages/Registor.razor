@@ -1,4 +1,6 @@
 ﻿@page "/Registor"
+@using WebApplication1.Data
+@using WebApplication1.Model
 @inject NavigationManager NavigationManager
 @using WebApplication1.Model
 
@@ -19,12 +21,16 @@
     public string username;
     public string password;
     public string message;
+    private IUserService userService;
 
-
-    public void RegisterNewUser()
+    protected override void OnInitialized()
+    {
+        userService = new UserService();
+    }
+    public async Task RegisterNewUser()
     {
         
-        message = "Register succedds!";
+
         NavigationManager.NavigateTo("/SignUp");
 
     }

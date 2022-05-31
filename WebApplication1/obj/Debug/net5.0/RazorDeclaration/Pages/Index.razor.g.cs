@@ -109,11 +109,13 @@ using WebApplication1.Data;
       
     public string filmname;
     public string message;
+    private IUserService userService;
     private IMovieService movieService;
 
     protected override void OnInitialized()
     {
         movieService = new CloudMovieService();
+        userService = new UserService();
     }
 
     public void SearchFilm()
@@ -122,9 +124,9 @@ using WebApplication1.Data;
     }
     public void LogIn()
     {
-        movieService.getMoviesByTitle("face");
-        Console.WriteLine(123);
-    //    NavigationManager.NavigateTo("/search");
+     //   movieService.getMoviesByDirector(529960);
+     //   Console.WriteLine("this is");
+         NavigationManager.NavigateTo("/Login");
     }
 
     public void Register()

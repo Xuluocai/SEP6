@@ -9,11 +9,13 @@ namespace WebApplication1.Model
     {
         public String name { get; set; }
         public int birth { get; set; }
+        public int id { set; get; }
 
-        public People(string name  )
+        public People(string name,int birth,int id )
         {
             this.name = name;
             this.birth = birth;
+            this.id = id;
         }
     }
 }

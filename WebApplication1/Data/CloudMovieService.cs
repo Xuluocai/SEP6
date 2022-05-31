@@ -111,5 +111,33 @@ namespace WebApplication1.Data
                 Console.WriteLine(result[i].name); }
             return result;
         }
+
+        public async Task<IList<Movie>> getMoviesByDirector(int personid)
+        {
+            Console.WriteLine("this is start from task");
+            HttpResponseMessage response = await client.GetAsync($"{url}/movie/getMoviesByDirector?id={personid}");
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error" + response);
+            }
+            string message = await response.Content.ReadAsStringAsync();
+            List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
+            Console.WriteLine("this is" + result);
+            return result;
+        }
+
+        public async Task<IList<Movie>> getMoviesByStar(int personid)
+        {
+            Console.WriteLine("this is start from task");
+            HttpResponseMessage response = await client.GetAsync($"{url}/movie/getMoviesByStar?id={personid}");
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error" + response);
+            }
+            string message = await response.Content.ReadAsStringAsync();
+            List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
+            Console.WriteLine("this is" + result);
+            return result;
+        }
     }
 }

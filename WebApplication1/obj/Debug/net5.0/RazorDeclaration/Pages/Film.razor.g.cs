@@ -105,7 +105,7 @@ using WebApplication1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 56 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
+#line 57 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
        
 
     private IMovieService movieService;
@@ -146,7 +146,7 @@ using WebApplication1.Data;
             year = movie.year;
             Console.WriteLine("year is "+ year);
             directors = await movieService.getDirectorsById(Id);
-         
+
             filmStars = await movieService.getStasById(Id);
 
             movies = await movieService.getMoviesByTitle(title);
@@ -159,8 +159,19 @@ using WebApplication1.Data;
         }
 
     }
+    public void GetDirectorDetails(People item)
+    {
+        int id = item.id;
+        Console.WriteLine(id);
+        NavigationManager.NavigateTo($"DirectorDetail/{id}");
+    }
 
-
+    public void GetStarDetails(People item)
+    {
+        int id = item.id;
+        Console.WriteLine(id);
+        NavigationManager.NavigateTo($"StarDetail/{id}");
+    }
 
 
 #line default
