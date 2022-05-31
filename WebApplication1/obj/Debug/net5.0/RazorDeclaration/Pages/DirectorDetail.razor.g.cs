@@ -105,13 +105,14 @@ using WebApplication1.Model;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 34 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\DirectorDetail.razor"
+#line 37 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\DirectorDetail.razor"
            
         public string name { set; get; }
         public int birth { set; get; }
 
         [Parameter]
         public string id { get; set; }
+
         public int Id { set; get; }
         public IList<Movie> movies { set; get; } = new List<Movie>();
 
@@ -127,12 +128,13 @@ using WebApplication1.Model;
 
                 Console.WriteLine(Id);
                 movieService = new CloudMovieService();
-                People people = await movieService.getDirectorById(Id);
-                name = people.name;
+                //     People people = await movieService.getDirectorById(Id);
+                //    name = people.name;
 
-                  birth = people.birth;
+                //    birth = people.birth;
                 // Console.WriteLine("year is " + year);
-                movies = await movieService.getMoviesByDirector(Id);
+                IList<Movie> movies1 = await movieService.getMoviesByDirector(Id);
+                movies = movies1;
 
             }
             catch (Exception e)
@@ -142,11 +144,14 @@ using WebApplication1.Model;
             }
 
         }
+
+       
     
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

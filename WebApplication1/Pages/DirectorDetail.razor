@@ -1,6 +1,7 @@
 ﻿@page "/DirectorDetail/{id}"
 @using WebApplication1.Data
-@using WebApplication1.Model  
+@using WebApplication1.Model
+@inject NavigationManager NavigationManager  
 
 <div id="filmInfo">
     <h4>Result</h4>
@@ -22,10 +23,12 @@
         <tbody>
             @foreach (var item in movies)
             {
-                <tr>
-                    <td>@item.title</td>
-                    <td>@item.year</td>
-                </tr>
+            <tr>
+                <a href="film/@item.id">
+                <td>@item.title</td>
+                </a>
+                <td>@item.year</td>
+            </tr>
             }
         </tbody>
 
@@ -37,6 +40,7 @@
 
         [Parameter]
         public string id { get; set; }
+
         public int Id { set; get; }
         public IList<Movie> movies { set; get; } = new List<Movie>();
 
@@ -52,12 +56,13 @@
 
                 Console.WriteLine(Id);
                 movieService = new CloudMovieService();
-                People people = await movieService.getDirectorById(Id);
-                name = people.name;
+                //     People people = await movieService.getDirectorById(Id);
+                //    name = people.name;
 
-                  birth = people.birth;
+                //    birth = people.birth;
                 // Console.WriteLine("year is " + year);
-                movies = await movieService.getMoviesByDirector(Id);
+                IList<Movie> movies1 = await movieService.getMoviesByDirector(Id);
+                movies = movies1;
 
             }
             catch (Exception e)
@@ -67,4 +72,6 @@
             }
 
         }
+
+       
     }

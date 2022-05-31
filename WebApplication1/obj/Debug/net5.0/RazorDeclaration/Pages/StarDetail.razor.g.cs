@@ -105,7 +105,7 @@ using WebApplication1.Model;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 34 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\StarDetail.razor"
+#line 35 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\StarDetail.razor"
        
     public string name { set; get; }
     public int birth { set; get; }
@@ -127,9 +127,9 @@ using WebApplication1.Model;
 
             Console.WriteLine(Id);
             movieService = new CloudMovieService();
-            People people = await movieService.getStarById(Id);
-            name = people.name;
-            birth = people.birth;
+           // People people = await movieService.getStarById(Id);
+        //    name = people.name;
+        //    birth = people.birth;
             movies = await movieService.getMoviesByStar(Id);
 
         }

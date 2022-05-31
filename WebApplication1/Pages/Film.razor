@@ -24,10 +24,12 @@
         <tbody>
             @foreach (var item in filmStars)
             {
-                <tr  @onclick="e => GetStarDetails(item)">
-                    <td>@item.name</td>
-                    <td>@item.birth</td>
-                </tr>
+            <tr>
+                <a href="StarDetail/@item.id">
+                <td>@item.name</td>
+                </a>
+                <td>@item.birth</td>
+            </tr>
             }
         </tbody>
 
@@ -42,10 +44,12 @@
         <tbody>
         @foreach (var item in directors)
         {
-            <tr @onclick="e => GetDirectorDetails(item)">
-
+            <tr>
+                <a href="DirectorDetail/@item.id">
                 <td>@item.name</td>
+                </a>
                 <td>@item.birth</td>
+                
             </tr>
         }
         </tbody>
@@ -107,18 +111,6 @@
         }
 
     }
-    public void GetDirectorDetails(People item)
-    {
-        int id = item.id;
-        Console.WriteLine(id);
-        NavigationManager.NavigateTo($"DirectorDetail/{id}");
-    }
-
-    public void GetStarDetails(People item)
-    {
-        int id = item.id;
-        Console.WriteLine(id);
-        NavigationManager.NavigateTo($"StarDetail/{id}");
-    }
+   
 
 }

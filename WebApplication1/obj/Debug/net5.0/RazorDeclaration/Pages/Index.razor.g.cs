@@ -124,9 +124,8 @@ using WebApplication1.Data;
     }
     public void LogIn()
     {
-     //   movieService.getMoviesByDirector(529960);
-     //   Console.WriteLine("this is");
-         NavigationManager.NavigateTo("/Login");
+        
+     NavigationManager.NavigateTo("/Login");
     }
 
     public void Register()

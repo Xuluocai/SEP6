@@ -8,11 +8,12 @@ namespace WebApplication1.Model
     public class Movie
     {
         public Movie(){}
-        public Movie(String name, int id, string title) {
-            name = name;
+        public Movie( int id, string title) {
+            
             id = id;
             title = title;
         }
+
        
 
         public int id { set; get; }

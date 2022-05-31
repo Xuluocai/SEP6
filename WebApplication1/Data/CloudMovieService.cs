@@ -122,7 +122,7 @@ namespace WebApplication1.Data
             }
             string message = await response.Content.ReadAsStringAsync();
             List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
-            Console.WriteLine("this is" + result);
+            Console.WriteLine("this is" + result.Count);
             return result;
         }
 

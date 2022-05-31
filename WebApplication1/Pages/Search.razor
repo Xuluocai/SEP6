@@ -34,12 +34,12 @@
                 @foreach (var item in result)
                 {
 
-                <tr @onclick="e => GetDetails(item)">
-
+                <tr>
+                    <a href="film/@item.id">
                     <td>@item.title</td>
-                    
+                    </a>
                     <td>@item.year</td>
-                    
+
                 </tr>
 
                 }
@@ -110,12 +110,7 @@
 
     }
 
-    public void GetDetails(Movie item)
-    {
-        int id = item.id;
-        Console.WriteLine(id);
-        NavigationManager.NavigateTo($"film/{id}");
-    }
+  
     void HandleChangePage(int p)
     {
         pageNumber = p;

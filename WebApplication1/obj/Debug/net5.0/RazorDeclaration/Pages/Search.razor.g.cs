@@ -147,12 +147,7 @@ using WebApplication1.Data;
 
     }
 
-    public void GetDetails(Movie item)
-    {
-        int id = item.id;
-        Console.WriteLine(id);
-        NavigationManager.NavigateTo($"film/{id}");
-    }
+  
     void HandleChangePage(int p)
     {
         pageNumber = p;

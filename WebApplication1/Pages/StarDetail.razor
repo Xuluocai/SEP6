@@ -22,10 +22,11 @@
         <tbody>
             @foreach (var item in movies)
             {
-                <tr>
-                    <td>@item.title</td>
-                    <td>@item.year</td>
-                </tr>
+            <tr>
+                <a href="film/@item.id">
+                <td>@item.title</td></a>
+                <td>@item.year</td>
+            </tr>
             }
         </tbody>
 
@@ -52,9 +53,9 @@
 
             Console.WriteLine(Id);
             movieService = new CloudMovieService();
-            People people = await movieService.getStarById(Id);
-            name = people.name;
-            birth = people.birth;
+           // People people = await movieService.getStarById(Id);
+        //    name = people.name;
+        //    birth = people.birth;
             movies = await movieService.getMoviesByStar(Id);
 
         }
