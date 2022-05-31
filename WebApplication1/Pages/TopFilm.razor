@@ -1,11 +1,88 @@
 ﻿@page "/TopFilmlist"
 @using WebApplication1.Data
 @using WebApplication1.Model
+@inject NavigationManager NavigationManager
 <h1>The toplists of your favorite movies</h1>
-<table>
-    <tr></tr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Movies:</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in result)
+        {
+
+            <tr @onclick="e => GetDetails(item)">
+
+                <td>@item.title</td>
+
+                <td>@item.year</td>
+
+            </tr>
+
+        }
+        <ul>
+            @for (int a = 1; a <= result1.Count() / pageSize; a++)
+            {
+                int p = a;
+
+                <button type="button" @onclick="(e=>HandleChangePage(p))">@p</button>
+
+            }
+        </ul>
+    </tbody>
+
 </table>
 @code {
-    private IUserService useService;
+    private IUserService userService;
     private IMovieService movieService;
+    private int pageNumber = 1;
+    private int pageSize = 20;
+    public string username { set; get; }
+    public IList<Movie> result = new List<Movie>();
+    public IList<Movie> result1 = new List<Movie>();
+
+    protected async override void OnInitialized()
+    {
+        userService = new UserService();
+        movieService = new CloudMovieService();
+
+        try
+        {
+
+
+            movieService = new CloudMovieService();
+
+
+            IList<Movie> movies = await userService.getTopMoviesByUsename(username);
+            result1 = movies;
+            HandleChangePage(result1.Count / pageSize);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    public void GetDetails(Movie item)
+    {
+        int id = item.id;
+        Console.WriteLine(id);
+        NavigationManager.NavigateTo($"film/{id}");
+    }
+
+    void HandleChangePage(int p)
+    {
+        pageNumber = p;
+
+        result = new List<Movie>(result1.Skip((p - 1) * pageSize).Take(pageSize));
+        Console.WriteLine("p is " + p);
+        foreach (var item in result)
+        {
+            Console.WriteLine(item.title);
+        }
+    }
 }

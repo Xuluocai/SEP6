@@ -139,5 +139,37 @@ namespace WebApplication1.Data
             Console.WriteLine("this is" + result);
             return result;
         }
+
+        public async Task<People> getStarById(int id)
+        {
+            HttpResponseMessage response = await client.GetAsync($"{url}/people/getStarById?id={id}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            People people = JsonSerializer.Deserialize<People>(message);
+            Console.WriteLine(people.name);
+            Console.WriteLine(response);
+            return people;
+        }
+
+        public async Task<People> getDirectorById(int Id)
+        {
+            HttpResponseMessage response = await client.GetAsync($"{url}/people/getDirectorById?id={Id}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            People people = JsonSerializer.Deserialize<People>(message);
+            Console.WriteLine(people.name);
+            Console.WriteLine(response);
+            return people;
+        }
     }
 }

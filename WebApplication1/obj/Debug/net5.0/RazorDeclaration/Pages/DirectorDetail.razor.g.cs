@@ -124,16 +124,16 @@ using WebApplication1.Model;
 
             try
             {
-               
+
                 Console.WriteLine(Id);
                 movieService = new CloudMovieService();
-             //  Movie movie = await movieService.getMoviesByDirector(Id);
-            //    title = movie.title;
-             //   Console.WriteLine("title is " + title);
-           //     year = movie.year;
-               // Console.WriteLine("year is " + year);
+                People people = await movieService.getDirectorById(Id);
+                name = people.name;
+
+                  birth = people.birth;
+                // Console.WriteLine("year is " + year);
                 movies = await movieService.getMoviesByDirector(Id);
-  
+
             }
             catch (Exception e)
             {

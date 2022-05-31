@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace WebApplication1.Pages
+namespace WebApplication1.Pages.Shared
 {
     #line hidden
     using System;
@@ -82,22 +82,7 @@ using WebApplication1.Shared;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 2 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
-using WebApplication1.Data;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
-using WebApplication1.Model;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/TopFilmlist")]
-    public partial class TopFilm : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,62 +90,20 @@ using WebApplication1.Model;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 38 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
+#line 28 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Shared\NavMenu.razor"
        
-    private IUserService userService;
-    private IMovieService movieService;
-    private int pageNumber = 1;
-    private int pageSize = 20;
-    public string username { set; get; }
-    public IList<Movie> result = new List<Movie>();
-    public IList<Movie> result1 = new List<Movie>();
+    private bool collapseNavMenu = true;
 
-    protected async override void OnInitialized()
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
     {
-        userService = new UserService();
-        movieService = new CloudMovieService();
-
-        try
-        {
-
-
-            movieService = new CloudMovieService();
-
-
-            IList<Movie> movies = await userService.getTopMoviesByUsename(username);
-            result1 = movies;
-            HandleChangePage(result1.Count / pageSize);
-
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-    }
-    public void GetDetails(Movie item)
-    {
-        int id = item.id;
-        Console.WriteLine(id);
-        NavigationManager.NavigateTo($"film/{id}");
-    }
-
-    void HandleChangePage(int p)
-    {
-        pageNumber = p;
-
-        result = new List<Movie>(result1.Skip((p - 1) * pageSize).Take(pageSize));
-        Console.WriteLine("p is " + p);
-        foreach (var item in result)
-        {
-            Console.WriteLine(item.title);
-        }
+        collapseNavMenu = !collapseNavMenu;
     }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591
