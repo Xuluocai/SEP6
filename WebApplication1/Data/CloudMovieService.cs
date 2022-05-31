@@ -162,7 +162,7 @@ namespace WebApplication1.Data
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Error");
+                throw new Exception("Error"+response);
             }
 
             string message = await response.Content.ReadAsStringAsync();

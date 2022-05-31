@@ -105,10 +105,11 @@ using WebApplication1.Model;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 37 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\DirectorDetail.razor"
+#line 41 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\DirectorDetail.razor"
            
         public string name { set; get; }
         public int birth { set; get; }
+        public double rating { set; get; }
 
         [Parameter]
         public string id { get; set; }
@@ -128,14 +129,22 @@ using WebApplication1.Model;
 
                 Console.WriteLine(Id);
                 movieService = new CloudMovieService();
-              People people = await movieService.getPeopleById(Id);
-                  name = people.name;
+                People people = await movieService.getPeopleById(Id);
+                name = people.name;
 
-                    birth = people.birth;
+                birth = people.birth;
                 // Console.WriteLine("year is " + year);
                 IList<Movie> movies1 = await movieService.getMoviesByDirector(Id);
                 movies = movies1;
 
+
+                for (int i = 0; i <= movies.Count; i++) {
+
+                    double rating1 = await movieService.getRatingById(movies[1].id);
+                    rating = rating + rating1;
+                }
+
+                rating = rating / (movies.Count);
             }
             catch (Exception e)
             {
@@ -145,7 +154,7 @@ using WebApplication1.Model;
 
         }
 
-       
+
     
 
 #line default

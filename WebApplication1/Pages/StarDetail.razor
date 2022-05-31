@@ -12,6 +12,10 @@
         <label>Birth</label>
         <label>@birth</label>
     </div>
+    <div class="fInfo">
+        <label>Average Rating</label>
+        <label>@rating</label>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -22,11 +26,11 @@
         <tbody>
             @foreach (var item in movies)
             {
-            <tr>
-                <a href="film/@item.id">
-                <td>@item.title</td></a>
-                <td>@item.year</td>
-            </tr>
+                <tr>
+                    <a href="film/@item.id">
+                    <td>@item.title</td></a>
+                    <td>@item.year</td>
+                </tr>
             }
         </tbody>
 
@@ -35,6 +39,7 @@
 @code {
     public string name { set; get; }
     public int birth { set; get; }
+    public double rating { set; get; }
 
     [Parameter]
     public string id { get; set; }
@@ -54,9 +59,18 @@
             Console.WriteLine(Id);
             movieService = new CloudMovieService();
             People people = await movieService.getPeopleById(Id);
-           name = people.name;
+            name = people.name;
             birth = people.birth;
             movies = await movieService.getMoviesByStar(Id);
+
+            for (int i = 0; i <= movies.Count; i++)
+            {
+
+                double rating1 = await movieService.getRatingById(movies[1].id);
+                rating = rating + rating1;
+            }
+
+            rating = rating / (movies.Count);
 
         }
         catch (Exception e)

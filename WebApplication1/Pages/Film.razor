@@ -23,26 +23,7 @@
         <label>Votes</label>
         <label>@votes</label>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Stars:</th>
-                <th>Birth:</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in filmStars)
-            {
-                <tr>
-                    <a href="StarDetail/@item.id">
-                    <td>@item.name</td>
-                    </a>
-                    <td>@item.birth</td>
-                </tr>
-            }
-        </tbody>
 
-    </table>
     <table class="table">
         <thead>
             <tr>
@@ -59,6 +40,26 @@
                     </a>
                     <td>@item.birth</td>
 
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Stars:</th>
+                <th>Birth:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in filmStars)
+            {
+                <tr>
+                    <a href="StarDetail/@item.id">
+                    <td>@item.name</td>
+                    </a>
+                    <td>@item.birth</td>
                 </tr>
             }
         </tbody>
