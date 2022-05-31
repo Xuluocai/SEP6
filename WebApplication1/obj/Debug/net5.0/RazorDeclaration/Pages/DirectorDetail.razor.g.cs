@@ -128,10 +128,10 @@ using WebApplication1.Model;
 
                 Console.WriteLine(Id);
                 movieService = new CloudMovieService();
-                //     People people = await movieService.getDirectorById(Id);
-                //    name = people.name;
+              People people = await movieService.getPeopleById(Id);
+                  name = people.name;
 
-                //    birth = people.birth;
+                    birth = people.birth;
                 // Console.WriteLine("year is " + year);
                 IList<Movie> movies1 = await movieService.getMoviesByDirector(Id);
                 movies = movies1;

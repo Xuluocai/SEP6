@@ -16,8 +16,7 @@ namespace WebApplication1.Data
         Task<IList<People>> getDirectorsById(int id);
         Task<IList<Movie>> getMoviesByStar(int personid);
         Task<IList<Movie>> getMoviesByDirector(int personid);
-        Task<People> getStarById(int id);
-        Task<People> getDirectorById(int Id);
+        Task<People> getPeopleById(int id);
 
     }
 }

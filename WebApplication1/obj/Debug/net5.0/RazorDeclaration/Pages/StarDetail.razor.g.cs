@@ -127,9 +127,9 @@ using WebApplication1.Model;
 
             Console.WriteLine(Id);
             movieService = new CloudMovieService();
-           // People people = await movieService.getStarById(Id);
-        //    name = people.name;
-        //    birth = people.birth;
+            People people = await movieService.getPeopleById(Id);
+           name = people.name;
+            birth = people.birth;
             movies = await movieService.getMoviesByStar(Id);
 
         }

@@ -140,25 +140,9 @@ namespace WebApplication1.Data
             return result;
         }
 
-        public async Task<People> getStarById(int id)
+        public async Task<People> getPeopleById(int id)
         {
-            HttpResponseMessage response = await client.GetAsync($"{url}/people/getStarById?id={id}");
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception("Error");
-            }
-
-            string message = await response.Content.ReadAsStringAsync();
-            People people = JsonSerializer.Deserialize<People>(message);
-            Console.WriteLine(people.name);
-            Console.WriteLine(response);
-            return people;
-        }
-
-        public async Task<People> getDirectorById(int Id)
-        {
-            HttpResponseMessage response = await client.GetAsync($"{url}/people/getDirectorById?id={Id}");
+            HttpResponseMessage response = await client.GetAsync($"{url}/people/getPeopleById?id={id}");
 
             if (!response.IsSuccessStatusCode)
             {
