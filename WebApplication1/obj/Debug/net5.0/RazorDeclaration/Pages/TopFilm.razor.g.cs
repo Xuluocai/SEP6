@@ -129,7 +129,7 @@ using WebApplication1.Model;
 
             IList<Movie> movies = await userService.getTopMoviesByUsename(username);
             result1 = movies;
-            HandleChangePage(result1.Count / pageSize);
+            HandleChangePage(result1.Count/pageSize);
 
         }
         catch (Exception e)

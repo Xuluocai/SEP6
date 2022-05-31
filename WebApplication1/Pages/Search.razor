@@ -18,6 +18,20 @@
             </div>
         </div>
 
+        <div class="chInfo">
+        <label>Year: </label>
+        <select @onchange="@setYear">
+            <option value="2010">2010s</option>
+            <option value="2000">2000s</option>
+            <option value="1990 ">1990s</option>
+            <option value="1980 ">1980s</option>
+            <option value="1970">1970s</option>
+            <option value="1960">1960s</option>
+            <option value="1950">1950s</option>
+            <option value="1940">1940s</option>
+        </select>
+    </div>
+
         <div>
             <button @onclick="search"> search </button>
             <button @onclick="clear"> clear </button>
@@ -64,7 +78,8 @@
 
       
     </div>
-</div>
+    </div>
+
 
            
 
@@ -78,6 +93,8 @@
     public string message { set; get; }
     public IList<Movie> result = new List<Movie>();
     public IList<Movie> result1 = new List<Movie>();
+    private int minYear=2010;
+    private int maxYear=2020;
 
 
     public async Task search()
@@ -90,7 +107,23 @@
 
 
             IList<Movie> movies = await movieService.getMoviesByTitle(filmname);
-            result1 = movies;
+            Console.WriteLine("the number is" + movies.Count);
+            IList<Movie> movies2 = new List<Movie>();
+            for(int i = 0; i <movies.Count; i++)
+            {
+                Console.WriteLine("the "+i);
+                Movie movie = await movieService.getMovieById(movies[i].id);
+                int year;
+                year = movie.year;
+                if (year >= minYear && year < maxYear)
+                {
+                    movies2.Add(movie);
+                }
+
+            }
+            Console.WriteLine("the number is"+movies2.Count);
+            result1 = movies2;
+
             HandleChangePage(result1.Count / pageSize);
             Console.WriteLine("The title is" + text);
         }
@@ -102,7 +135,12 @@
 
 
     }
-
+    public void setYear(ChangeEventArgs args)
+    {
+        string result = args.Value.ToString();
+        minYear = int.Parse(result);
+        maxYear = minYear + 10;
+    }
 
     public async Task clear()
     {
@@ -110,7 +148,7 @@
 
     }
 
-  
+
     void HandleChangePage(int p)
     {
         pageNumber = p;

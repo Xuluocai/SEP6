@@ -105,7 +105,7 @@ using WebApplication1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 72 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Search.razor"
+#line 87 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Search.razor"
        
     private IMovieService movieService;
     private int pageNumber = 1;
@@ -115,6 +115,8 @@ using WebApplication1.Data;
     public string message { set; get; }
     public IList<Movie> result = new List<Movie>();
     public IList<Movie> result1 = new List<Movie>();
+    private int minYear=2010;
+    private int maxYear=2020;
 
 
     public async Task search()
@@ -127,7 +129,23 @@ using WebApplication1.Data;
 
 
             IList<Movie> movies = await movieService.getMoviesByTitle(filmname);
-            result1 = movies;
+            Console.WriteLine("the number is" + movies.Count);
+            IList<Movie> movies2 = new List<Movie>();
+            for(int i = 0; i <movies.Count; i++)
+            {
+                Console.WriteLine("the "+i);
+                Movie movie = await movieService.getMovieById(movies[i].id);
+                int year;
+                year = movie.year;
+                if (year >= minYear && year < maxYear)
+                {
+                    movies2.Add(movie);
+                }
+
+            }
+            Console.WriteLine("the number is"+movies2.Count);
+            result1 = movies2;
+
             HandleChangePage(result1.Count / pageSize);
             Console.WriteLine("The title is" + text);
         }
@@ -139,7 +157,12 @@ using WebApplication1.Data;
 
 
     }
-
+    public void setYear(ChangeEventArgs args)
+    {
+        string result = args.Value.ToString();
+        minYear = int.Parse(result);
+        maxYear = minYear + 10;
+    }
 
     public async Task clear()
     {
@@ -147,7 +170,7 @@ using WebApplication1.Data;
 
     }
 
-  
+
     void HandleChangePage(int p)
     {
         pageNumber = p;

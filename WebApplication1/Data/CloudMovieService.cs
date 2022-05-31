@@ -43,11 +43,7 @@ namespace WebApplication1.Data
             }
             string message = await response.Content.ReadAsStringAsync();
             List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
-            for(int i = 0; i < result.Count; i++)
-            {
-                Console.WriteLine(result[i].title);
-            }
-            
+  
             return result;
         }
 
@@ -62,7 +58,6 @@ namespace WebApplication1.Data
             }
             string message = await response.Content.ReadAsStringAsync();
             List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
-            Console.WriteLine("this is"+result);
             return result;
 
         }
