@@ -96,7 +96,7 @@ using WebApplication1.Model;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/TopFilmlist")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/TopFilmlist/{username}")]
     public partial class TopFilm : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,17 +105,29 @@ using WebApplication1.Model;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 38 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
+#line 39 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
        
     private IUserService userService;
     private IMovieService movieService;
     private int pageNumber = 1;
     private int pageSize = 20;
+    [Parameter]
     public string username { set; get; }
     public IList<Movie> result = new List<Movie>();
     public IList<Movie> result1 = new List<Movie>();
 
-    protected async override void OnInitialized()
+
+  
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 57 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
+  
+
+
+    protected override  async Task OnInitializedAsync()
     {
         userService = new UserService();
         movieService = new CloudMovieService();
@@ -123,13 +135,13 @@ using WebApplication1.Model;
         try
         {
 
-
-            movieService = new CloudMovieService();
-
-
-            IList<Movie> movies = await userService.getTopMoviesByUsename(username);
+            IList<Movie> movies = await userService.getMovieList(username);
+            Console.WriteLine("movies " + movies[1].title);
             result1 = movies;
-            HandleChangePage(result1.Count/pageSize);
+            Console.WriteLine("result1 " + result1[1].title);
+            Console.WriteLine("test result is " + 2 / 10);
+            HandleChangePage(result1.Count / pageSize);
+            // HandleChangePage(10);
 
         }
         catch (Exception e)
@@ -142,12 +154,13 @@ using WebApplication1.Model;
     {
         int id = item.id;
         Console.WriteLine(id);
-        NavigationManager.NavigateTo($"film/{id}");
+        NavigationManager.NavigateTo($"film/{id}/{username}");
     }
 
     void HandleChangePage(int p)
     {
         pageNumber = p;
+        Console.WriteLine(" HandleChangePage result1 " + result1[1].title);
 
         result = new List<Movie>(result1.Skip((p - 1) * pageSize).Take(pageSize));
         Console.WriteLine("p is " + p);

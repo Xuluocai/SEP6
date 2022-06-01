@@ -96,7 +96,7 @@ using WebApplication1.Data;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/film/{id}")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/film/{id}/{username}")]
     public partial class Film : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -109,6 +109,8 @@ using WebApplication1.Data;
        
 
     private IMovieService movieService;
+    private IUserService userService;
+    private Movielist movielist;
     public string title { set; get; }
     public int year { set; get; }
     public double rating { set; get; } = new double();
@@ -116,6 +118,8 @@ using WebApplication1.Data;
 
     [Parameter]
     public string id { get; set; }
+    [Parameter]
+    public string username { set; get; }
 
     public int Id { set; get; }
 
@@ -124,12 +128,24 @@ using WebApplication1.Data;
     public IList<People> directors { set; get; } = new List<People>();
     public IList<Movie> movies { set; get; } = new List<Movie>();
 
-    public IList<Film> allFilms;
+
     public async void addFilm()
     {
 
+        try
+        {
+            movielist = new Movielist(username,Id);
 
-        NavigationManager.NavigateTo("/TopFilmlist");
+            Console.WriteLine("this is" + movielist.username);
+            await userService.addMovieToList(movielist);
+            Console.WriteLine("123");
+            NavigationManager.NavigateTo($"/TopFilmlist/{username}");
+        }
+        catch (Exception e)
+        {
+
+        }
+
     }
 
     protected  override  async Task OnInitializedAsync()
@@ -142,6 +158,7 @@ using WebApplication1.Data;
             Console.WriteLine(int.MaxValue);
             Console.WriteLine(Id);
             movieService = new CloudMovieService();
+            userService = new UserService();
             Movie movie = await movieService.getMovieById(Id);
             title = movie.title;
             Console.WriteLine("title is "+title);

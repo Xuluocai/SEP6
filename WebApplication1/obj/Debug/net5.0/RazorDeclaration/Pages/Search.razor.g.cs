@@ -96,7 +96,7 @@ using WebApplication1.Data;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Search")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Search/{username}")]
     public partial class Search : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,7 +105,7 @@ using WebApplication1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 87 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Search.razor"
+#line 86 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Search.razor"
        
     private IMovieService movieService;
     private int pageNumber = 1;
@@ -113,6 +113,8 @@ using WebApplication1.Data;
     private string text ="new";
     public string filmname { set; get; }
     public string message { set; get; }
+    [Parameter]
+    public string username { set; get; }
     public IList<Movie> result = new List<Movie>();
     public IList<Movie> result1 = new List<Movie>();
     private int minYear=2010;

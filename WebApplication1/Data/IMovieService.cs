@@ -19,6 +19,6 @@ namespace WebApplication1.Data
         Task<People> getPeopleById(int id);
         Task<Double> getRatingById(int id);
         Task<Double> getVotesById(int id);
-
+        
     }
 }

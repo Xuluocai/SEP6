@@ -10,7 +10,7 @@ namespace WebApplication1.Data
 {
     public class CloudMovieService : IMovieService
     {
-        private string url = "https://sep6-v2.ey.r.appspot.com";
+        private string url = "https://sep6-backend-v1-dpni2kwoia-ey.a.run.app";
         private readonly HttpClient client;
 
         public CloudMovieService()
@@ -182,5 +182,7 @@ namespace WebApplication1.Data
             Console.WriteLine(response);
             return votes;
         }
+
+       
     }
 }

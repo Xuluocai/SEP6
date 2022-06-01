@@ -19,7 +19,7 @@
             <div style="color:red">@message</div>
             <div id="signUp">
                 <div>Aren't signed up yet?</div>
-                <NavLink class="nav-link" id="signUpLink" href="Register">Don't miss a chance and do it now!</NavLink>
+                <NavLink class="nav-link" id="signUpLink" href="Registor">Don't miss a chance and do it now!</NavLink>
             </div>
         </div>
    
@@ -44,8 +44,9 @@
             User user = await userService.getUserByUsername(username);
 
             if (password.Equals(user.password)){
-                NavigationManager.NavigateTo("/search");
+
                 message = "Login succeed!";
+                NavigationManager.NavigateTo($"/TopFilmlist/{username}");
             }
             else
             {
@@ -54,6 +55,7 @@
         }
         catch (Exception e)
         {
+
             message = "Username or password is incorrect!";
             Console.WriteLine(e);
         }

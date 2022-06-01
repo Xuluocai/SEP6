@@ -122,16 +122,16 @@ using WebApplication1.Data;
     {
         filmname = "Please log in !";
     }
-    public void LogIn()
+    public async Task LogIn()
     {
         
-     NavigationManager.NavigateTo("/Login");
+      NavigationManager.NavigateTo("/Login");
     }
 
     public void Register()
     {
 
-        NavigationManager.NavigateTo("/Registor");
+         NavigationManager.NavigateTo("/Registor");
     }
 
 #line default

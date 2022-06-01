@@ -1,4 +1,4 @@
-﻿@page "/film/{id}"
+﻿@page "/film/{id}/{username}"
 @using WebApplication1.Model
 @using WebApplication1.Data
 @inject NavigationManager NavigationManager
@@ -35,7 +35,7 @@
             @foreach (var item in directors)
             {
                 <tr>
-                    <a href="DirectorDetail/@item.id">
+                    <a href="DirectorDetail/@item.id/@username">
                     <td>@item.name</td>
                     </a>
                     <td>@item.birth</td>
@@ -56,7 +56,7 @@
             @foreach (var item in filmStars)
             {
                 <tr>
-                    <a href="StarDetail/@item.id">
+                    <a href="StarDetail/@item.id/@username">
                     <td>@item.name</td>
                     </a>
                     <td>@item.birth</td>
@@ -71,6 +71,8 @@
 @code {
 
     private IMovieService movieService;
+    private IUserService userService;
+    private Movielist movielist;
     public string title { set; get; }
     public int year { set; get; }
     public double rating { set; get; } = new double();
@@ -78,6 +80,8 @@
 
     [Parameter]
     public string id { get; set; }
+    [Parameter]
+    public string username { set; get; }
 
     public int Id { set; get; }
 
@@ -86,12 +90,24 @@
     public IList<People> directors { set; get; } = new List<People>();
     public IList<Movie> movies { set; get; } = new List<Movie>();
 
-    public IList<Film> allFilms;
+
     public async void addFilm()
     {
 
+        try
+        {
+            movielist = new Movielist(username,Id);
 
-        NavigationManager.NavigateTo("/TopFilmlist");
+            Console.WriteLine("this is" + movielist.username);
+            await userService.addMovieToList(movielist);
+            Console.WriteLine("123");
+            NavigationManager.NavigateTo($"/TopFilmlist/{username}");
+        }
+        catch (Exception e)
+        {
+
+        }
+
     }
 
     protected  override  async Task OnInitializedAsync()
@@ -104,6 +120,7 @@
             Console.WriteLine(int.MaxValue);
             Console.WriteLine(Id);
             movieService = new CloudMovieService();
+            userService = new UserService();
             Movie movie = await movieService.getMovieById(Id);
             title = movie.title;
             Console.WriteLine("title is "+title);

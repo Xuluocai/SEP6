@@ -96,7 +96,7 @@ using WebApplication1.Model;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/DirectorDetail/{id}")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/DirectorDetail/{id}/{username}")]
     public partial class DirectorDetail : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -113,6 +113,8 @@ using WebApplication1.Model;
 
         [Parameter]
         public string id { get; set; }
+        [Parameter]
+        public string username { set; get; }
 
         public int Id { set; get; }
         public IList<Movie> movies { set; get; } = new List<Movie>();

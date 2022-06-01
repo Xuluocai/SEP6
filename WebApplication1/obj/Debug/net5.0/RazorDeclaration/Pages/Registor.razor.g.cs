@@ -96,13 +96,6 @@ using WebApplication1.Model;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 5 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Registor.razor"
-using WebApplication1.Model;
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Registor")]
     public partial class Registor : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -112,12 +105,14 @@ using WebApplication1.Model;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 20 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Registor.razor"
+#line 24 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Registor.razor"
        
     public string username;
     public string password;
+    public string nickname;
     public string message;
     private IUserService userService;
+    private User newUser = new User();
 
     protected override void OnInitialized()
     {
@@ -125,10 +120,19 @@ using WebApplication1.Model;
     }
     public async Task RegisterNewUser()
     {
-        
+        Console.WriteLine("This is the first");
+        try
+        {   newUser.username =username;
+            newUser.password = password;
+            newUser.nickname = nickname;
+            Console.WriteLine("the username is"+username);
+            await userService.RegisterUser(newUser);
+            Console.WriteLine("123");
+            NavigationManager.NavigateTo("/SignUp");
+        }catch(Exception e)
+        {
 
-        NavigationManager.NavigateTo("/SignUp");
-
+        }
     }
 
 

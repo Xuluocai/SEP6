@@ -1,8 +1,10 @@
-﻿@page "/TopFilmlist"
+﻿@page "/TopFilmlist/{username}"
 @using WebApplication1.Data
 @using WebApplication1.Model
 @inject NavigationManager NavigationManager
 <h1>The toplists of your favorite movies</h1>
+
+<a href="search/@username" class="up">Search</a>
 <table class="table">
     <thead>
         <tr>
@@ -14,13 +16,12 @@
         @foreach (var item in result)
         {
 
-        <tr>
-            <a href="film/@item.id">
-            <td>@item.title</td></a>
+            <tr>
+                <a href="film/@item.id/@username">
+                <td>@item.title</td></a>
+                <td>@item.year</td>
 
-            <td>@item.year</td>
-
-        </tr>
+            </tr>
 
         }
         <ul>
@@ -33,18 +34,30 @@
             }
         </ul>
     </tbody>
-
+    <button type="button" @onclick="test">click me</button>
 </table>
 @code {
     private IUserService userService;
     private IMovieService movieService;
     private int pageNumber = 1;
     private int pageSize = 20;
+    [Parameter]
     public string username { set; get; }
     public IList<Movie> result = new List<Movie>();
     public IList<Movie> result1 = new List<Movie>();
 
-    protected async override void OnInitialized()
+
+  @*  public async void test()
+    {
+        IList<Movie> movies = await userService.getMovieList(username);
+        Console.WriteLine("movies " + movies[1].title);
+        result1 = movies;
+        HandleChangePage(10);
+    }
+*@
+
+
+    protected override  async Task OnInitializedAsync()
     {
         userService = new UserService();
         movieService = new CloudMovieService();
@@ -52,13 +65,13 @@
         try
         {
 
-
-            movieService = new CloudMovieService();
-
-
-            IList<Movie> movies = await userService.getTopMoviesByUsename(username);
+            IList<Movie> movies = await userService.getMovieList(username);
+            Console.WriteLine("movies " + movies[1].title);
             result1 = movies;
-            HandleChangePage(result1.Count/pageSize);
+            Console.WriteLine("result1 " + result1[1].title);
+            Console.WriteLine("test result is " + 2 / 10);
+            HandleChangePage(result1.Count / pageSize);
+            // HandleChangePage(10);
 
         }
         catch (Exception e)
@@ -71,12 +84,13 @@
     {
         int id = item.id;
         Console.WriteLine(id);
-        NavigationManager.NavigateTo($"film/{id}");
+        NavigationManager.NavigateTo($"film/{id}/{username}");
     }
 
     void HandleChangePage(int p)
     {
         pageNumber = p;
+        Console.WriteLine(" HandleChangePage result1 " + result1[1].title);
 
         result = new List<Movie>(result1.Skip((p - 1) * pageSize).Take(pageSize));
         Console.WriteLine("p is " + p);

@@ -1,4 +1,4 @@
-﻿@page "/StarDetail/{id}"
+﻿@page "/StarDetail/{id}/{username}"
 @using WebApplication1.Data
 @using WebApplication1.Model
 
@@ -27,7 +27,7 @@
             @foreach (var item in movies)
             {
                 <tr>
-                    <a href="film/@item.id">
+                    <a href="film/@item.id/@username">
                     <td>@item.title</td></a>
                     <td>@item.year</td>
                 </tr>
@@ -43,6 +43,8 @@
 
     [Parameter]
     public string id { get; set; }
+    [Parameter]
+    public string username { set; get; }
     public int Id { set; get; }
     public IList<Movie> movies { set; get; } = new List<Movie>();
 

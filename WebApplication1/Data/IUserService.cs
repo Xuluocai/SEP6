@@ -9,10 +9,11 @@ namespace WebApplication1.Data
     interface IUserService
     {
         Task<User> getUserByUsername(string username);
-        Task<List<Movie>> getTopMoviesByUsename(string username);
+        Task<IList<Movie>> getMovieList(string username);
 
-        Task<Movie> addMovieByUsername(string username, int movieId);
-        Task<User> RegisterUserAsync(string username, string password);
+        Task  addMovieToList(Movielist movielist);
+       
+        Task<User> RegisterUser(User user);
 
     }
 }

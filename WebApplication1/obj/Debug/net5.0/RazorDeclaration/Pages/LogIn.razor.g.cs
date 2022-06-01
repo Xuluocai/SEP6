@@ -133,8 +133,9 @@ using WebApplication1.Data;
             User user = await userService.getUserByUsername(username);
 
             if (password.Equals(user.password)){
-                NavigationManager.NavigateTo("/search");
+
                 message = "Login succeed!";
+                NavigationManager.NavigateTo($"/TopFilmlist/{username}");
             }
             else
             {
@@ -143,6 +144,7 @@ using WebApplication1.Data;
         }
         catch (Exception e)
         {
+
             message = "Username or password is incorrect!";
             Console.WriteLine(e);
         }

@@ -1,4 +1,4 @@
-﻿@page "/Search"
+﻿@page "/Search/{username}"
 @using WebApplication1.Model
 @using WebApplication1.Data
 
@@ -8,9 +8,8 @@
 <div class="same">
     <div id="menu">
         <h3 id="h3prof">GreatestFilm</h3>
-        <NavLink href="TopFilmlist" class="up"> TopFilm list</NavLink>
-        <NavLink href="profileview" class="up">Profile</NavLink>
-        <NavLink href="search" class="up">Search</NavLink>
+        <a href="TopFilmlist/@username" class="up"> TopFilm list</a>
+    
         <div id="filmSearch">
             <div class="form-group">
                 <label>Film name:</label>
@@ -49,7 +48,7 @@
                 {
 
                 <tr>
-                    <a href="film/@item.id">
+                    <a href="film/@item.id/@username">
                     <td>@item.title</td>
                     </a>
                     <td>@item.year</td>
@@ -91,6 +90,8 @@
     private string text ="new";
     public string filmname { set; get; }
     public string message { set; get; }
+    [Parameter]
+    public string username { set; get; }
     public IList<Movie> result = new List<Movie>();
     public IList<Movie> result1 = new List<Movie>();
     private int minYear=2010;
