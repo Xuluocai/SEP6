@@ -3,25 +3,55 @@
 @using WebApplication1.Data
 @inject NavigationManager NavigationManager
 
-<div id="filmSearch">
-    <div class="form-group">
-        <label>Film name:</label>
-        <input type="text" placeholder="film name"  @bind-value="filmname" />
+<body>
+    <div>
+        <style scoped>
+
+            .bsearch,
+            .bLogin,
+            .bRegister {
+                color: white;
+                border-radius: 4px;
+                text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            }
+
+            .bsearch {
+                background: rgb(0, 126, 255);
+            }
+        </style>
+        <div id="filmSearch">
+            <h1>Welcome to the greatest movie!</h1>
+
+            
+            <div class="logIn" style="text-align:center">
+
+                <h7>Film name:</h7>
+
+                <input type="text" placeholder="film name" @bind-value="filmname" />
+            </div>
+            <div style="text-align:center">
+                <button class="bsearch" style="margin-top:5px" @onclick=" SearchFilm">
+                    Search
+                </button>
+            </div>
+        </div>
+        
+        <div style="text-align:center">
+            <button class="bsearch" style="margin-top:20px" @onclick="Register">
+                Register
+            </button>
+        </div>
+        <div style="text-align:center">
+            <button class="bsearch" style="margin-top:20px" @onclick="LogIn">
+                LogIn
+            </button>
+        </div>
+        <div id="gif2">
+            <img src="pic1.gif"  style="margin: 0 auto;">
+        </div>
+
     </div>
-
-    <button @onclick="SearchFilm">
-        Search
-    </button>
-</div>
-
-<button @onclick="LogIn">
-    LogIn
-</button>
-<button @onclick="Register">
-    Register
-</button>
-
-<div><label> @message</label></div>
+</body>
 @code{
     public string filmname;
     public string message;

@@ -90,7 +90,7 @@ using WebApplication1.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Shared\NavMenu.razor"
+#line 17 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

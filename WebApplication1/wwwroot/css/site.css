@@ -13,9 +13,55 @@ a, .btn-link {
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
+.button {
+    background: #3498db;
+    width: 180px;
+    padding: 4px 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 3px;
+    p
+
+{
+    font-family: 'Roboto';
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFF;
+    user-select: none;
+}
+
+&:hover {
+    cursor: pointer;
+}
+
+&:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    border-radius: 50%;
+    background-color: darken(#f1c40f, 20%);
+    opacity: 0.4;
+    bottom: -30px;
+}
+
+}
+#gif1 {
+    float: left;
+}
+#gif2 {
+    position: absolute;
+    top:350px;
+    right: 10px;
+    float: right
+}
 
 .content {
     padding-top: 1.1rem;
+    margin: 0 auto;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -41,7 +87,70 @@ a, .btn-link {
     width: 100%;
     z-index: 1000;
 }
+table, th, td {
+    border: 1px solid #ddd;
+}
 
+table {
+    margin-top:100;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    padding: 1.5em;
+    background-color: #4287ff;
+    color: #ffffff;
+}
+
+td {
+    text-align: center;
+    padding: 1em;
+    width:500px;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f7ff;
+}
+
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+tr:hover {
+    background-color: #bfd7ff;
+}
+#logIn {
+    width: 320px;
+    height: 300px;
+    padding: 45px;
+    background: #668cff;
+    border: 5px solid green;
+    font-size:medium;
+    margin: auto;
+}
+#signUp {
+    padding-top: 25px;
+    color: white;
+}
+.same {
+    width: 1200px;
+    height: 125vh;
+    background: #668cff;
+    border-left: 10px solid #dbbd7d;
+    border-right: 10px solid #dbbd7d;
+    margin: auto;
+}
+
+#result {
+    width: 600px;
+    height: 50px;
+    padding: 10px;
+    background: #668cff;
+    border: 5px solid green;
+    font-size:small;
+
+}
     #blazor-error-ui .dismiss {
         cursor: pointer;
         position: absolute;

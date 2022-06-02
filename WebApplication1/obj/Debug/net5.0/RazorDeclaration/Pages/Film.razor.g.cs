@@ -105,7 +105,7 @@ using WebApplication1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 71 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
+#line 73 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\Film.razor"
        
 
     private IMovieService movieService;

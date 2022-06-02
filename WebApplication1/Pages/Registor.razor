@@ -3,23 +3,27 @@
 @using WebApplication1.Model
 @inject NavigationManager NavigationManager
 
+<div id="logIn">
+    <div>
+        <label>User name:</label>
+        <input type="text" placeholder="user name" @bind-value="username" />
+    </div>
+    <div >
+        <label>Password:</label>
+        <input type="text" placeholder="password" @bind-value="password" />
+    </div>
+    <div >
+        <label>Nickname:</label>
+        <input type="text" placeholder="nickname" @bind-value="nickname" />
+    </div>
+    <button @onclick="RegisterNewUser">
+        Register
+    </button>
+</div>
 
-<div class="form-group">
-    <label>User name:</label>
-    <input type="text" placeholder="user name" @bind-value="username" />
+<div id="gif2">
+    <img src="pic2.gif" style="margin: 0 auto;">
 </div>
-<div class="form-group">
-    <label>Password:</label>
-    <input type="text" placeholder="password" @bind-value="password" />
-</div>
-<div class="form-group">
-    <label>Nickname:</label>
-    <input type="text" placeholder="nickname" @bind-value="nickname" />
-</div>
-<button @onclick="RegisterNewUser">
-    Register
-</button>
-
 <div><label> @message</label></div>
 @code {
     public string username;

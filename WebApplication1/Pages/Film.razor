@@ -4,26 +4,28 @@
 @inject NavigationManager NavigationManager
 @inject IMovieService MovieService
 
-<div id="filmInfo">
+<div>
+
     <h4>Result</h4>
-    <div class="fInfo">
-        <h3>@title</h3>
+    <div>
+        <div class="fInfo">
+            <h3>@title</h3>
 
-    </div>
-    <div class="fInfo">
-        <label>Year</label>
-        <label>@year</label>
-    </div>
+        </div>
+        <div class="fInfo">
+            <label>Year</label>
+            <label>@year</label>
+        </div>
 
-    <div class="fInfo">
-        <label>Rating</label>
-        <label>@rating</label>
+        <div class="fInfo">
+            <label>Rating</label>
+            <label>@rating</label>
+        </div>
+        <div class="fInfo">
+            <label>Votes</label>
+            <label>@votes</label>
+        </div>
     </div>
-    <div class="fInfo">
-        <label>Votes</label>
-        <label>@votes</label>
-    </div>
-
     <table class="table">
         <thead>
             <tr>

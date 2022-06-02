@@ -9,7 +9,7 @@
     <thead>
         <tr>
             <th>Movies:</th>
-
+            <th>Year:</th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +34,6 @@
             }
         </ul>
     </tbody>
-    <button type="button" @onclick="test">click me</button>
 </table>
 @code {
     private IUserService userService;
@@ -71,7 +70,7 @@
             Console.WriteLine("result1 " + result1[1].title);
             Console.WriteLine("test result is " + 2 / 10);
             HandleChangePage(result1.Count / pageSize);
-            // HandleChangePage(10);
+           
 
         }
         catch (Exception e)

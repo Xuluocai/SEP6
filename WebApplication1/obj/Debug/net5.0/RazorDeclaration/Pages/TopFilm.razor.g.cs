@@ -105,7 +105,7 @@ using WebApplication1.Model;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 39 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
+#line 38 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
        
     private IUserService userService;
     private IMovieService movieService;
@@ -123,7 +123,7 @@ using WebApplication1.Model;
 #line hidden
 #nullable disable
 #nullable restore
-#line 57 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
+#line 56 "D:\Users\Knuse\source\repos\SEP6\WebApplication1\Pages\TopFilm.razor"
   
 
 
@@ -141,7 +141,7 @@ using WebApplication1.Model;
             Console.WriteLine("result1 " + result1[1].title);
             Console.WriteLine("test result is " + 2 / 10);
             HandleChangePage(result1.Count / pageSize);
-            // HandleChangePage(10);
+           
 
         }
         catch (Exception e)
